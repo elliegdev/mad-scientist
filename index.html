@@ -9,25 +9,47 @@
 <body>
     <div class="container">
         <div id="inicio" class="section">
-            <h1>Bem-vindo ao Laboratório do Dra Vortex!</h1>
+            <h1>Bem-vindo ao Laboratório do Dr. Malvanix!</h1>
             <p>Resolva os enigmas para escapar do laboratório do cientista maluco. Boa sorte!</p>
             <button onclick="iniciarJogo()">Começar</button>
         </div>
 
+        <!-- Gerando as 20 salas -->
         <div id="sala1" class="section" style="display: none;">
-            <h2>Sala 1: O Experimento Secreto</h2>
-            <p>Resolva o enigma químico para prosseguir!</p>
+            <h2>Sala 1: Elementos Secretos</h2>
+            <p>Misture os elementos que somem até 28 e formem uma substância líquida.</p>
             <input type="text" id="respostaSala1" placeholder="Digite sua resposta">
             <button onclick="verificarResposta(1)">Enviar Resposta</button>
             <p id="feedbackSala1"></p>
         </div>
 
         <div id="sala2" class="section" style="display: none;">
-            <h2>Sala 2: A Fórmula Perdida</h2>
-            <p>Decifre a sequência de elementos para avançar.</p>
+            <h2>Sala 2: Máquina do Tempo Binária</h2>
+            <p>Converta o número 42 em binário.</p>
             <input type="text" id="respostaSala2" placeholder="Digite sua resposta">
             <button onclick="verificarResposta(2)">Enviar Resposta</button>
             <p id="feedbackSala2"></p>
+        </div>
+
+        <!-- Continua para as salas restantes -->
+        <!-- Aqui vamos copiar e colar a estrutura e conteúdo das próximas salas até a sala 20 -->
+
+        <div id="sala3" class="section" style="display: none;">
+            <h2>Sala 3: Cifra de César</h2>
+            <p>Decifre `Fdhvdu` com rotação -3.</p>
+            <input type="text" id="respostaSala3" placeholder="Digite sua resposta">
+            <button onclick="verificarResposta(3)">Enviar Resposta</button>
+            <p id="feedbackSala3"></p>
+        </div>
+
+        <!-- Seguem as estruturas até a sala 20... -->
+        
+        <div id="sala20" class="section" style="display: none;">
+            <h2>Sala 20: Enigma de Paridade</h2>
+            <p>Qual é a resposta de 6 % 2?</p>
+            <input type="text" id="respostaSala20" placeholder="Digite sua resposta">
+            <button onclick="verificarResposta(20)">Enviar Resposta</button>
+            <p id="feedbackSala20"></p>
         </div>
     </div>
 
