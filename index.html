@@ -79,6 +79,18 @@
         <div class="phase-indicator active" onclick="navigateToPhase(1)"></div>
         <div class="phase-indicator" onclick="navigateToPhase(2)"></div>
         <div class="phase-indicator" onclick="navigateToPhase(3)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(4)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(5)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(6)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(7)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(8)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(9)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(10)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(11)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(12)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(14)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(15)"></div>
+        
         <!-- Adicione mais bolinhas conforme necessário -->
     </div>
 
@@ -108,15 +120,11 @@
     </div>
 
     <!-- Enigma 3 -->
-    <div id="enigma3" class="enigma-container">
-        <p><strong>Enigma 3:</strong> Ouça com atenção o áudio e descubra a senha!</p>
-        <audio controls>
-            <source src="audio_enigma3.mp3" type="audio/mpeg">
-            Seu navegador não suporta o elemento de áudio.
-        </audio>
-        <input type="text" id="answer3" placeholder="Digite sua resposta" />
-        <p id="feedback3" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
-        <button onclick="checkAnswer('answer3', 'senha', 'final')">Verificar Resposta</button>
+   <div id="enigma1" class="enigma-container">
+        <h2>Enigma 1</h2>
+        <p>Qual é a sequência de letras que representa “Help” em código Morse?</p>
+        <input type="text" id="input1">
+        <button class="verify-button" onclick="verifyAnswer(1, '.... . .-.. .--.')">Verificar</button>
     </div>
 
     <!-- Mensagem final -->
@@ -187,7 +195,7 @@
  <!-- Script -->
     <script>
         let currentEnigma = 1;
-        const totalEnigmas = 4; // atualize para o número total de enigmas
+        const totalEnigmas = 15; // atualize para o número total de enigmas
 
         function showEnigma(enigmaNumber) {
             document.querySelectorAll('.enigma-container').forEach(container => container.style.display = 'none');
