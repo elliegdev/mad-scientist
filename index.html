@@ -4,6 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escape Room Cientista Maluca</title>
+    <style>
+        /* Estilo Geral */
+        body {
+            background-color: #000; /* Fundo preto para ambiente sombrio */
+            color: #00ff00; /* Verde neon */
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0 20px;
+        }
+
+        /* Títulos com efeito neon */
+        h1, h2 {
+            color: #00ff00;
+            text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #00ff00;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        /* Botão de Enigma */
+        .enigma-button {
+            background-color: #003300; /* Fundo verde escuro */
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+        }
+        .enigma-button:hover {
+            background-color: #00ff00;
+            color: #000;
+            box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+        }
+
+        /* Contêiner de Enigmas */
+        .enigma-container {
+            display: none;
+            margin-top: 20px;
+            border: 1px solid #00ff00;
+            padding: 20px;
+            box-shadow: 0 0 15px #00ff00;
+        }
+
+        /* Áudio */
+        audio {
+            margin-top: 20px;
+            border: 1px solid #00ff00;
+        }
+
+        /* Rodapé */
+        footer {
+            color: #00ff00;
+            text-shadow: 0 0 5px #00ff00;
+            margin-top: 50px;
+            font-size: 0.9rem;
+        }
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room Cientista Maluca</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
