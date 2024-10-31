@@ -77,26 +77,18 @@
     <!-- Timer -->
     <h2 id="timer">Tempo Restante: 60:00</h2>
 
+    <!-- Botão Iniciar Enigma -->
+    <button id="startButton" onclick="startGame()">Iniciar Enigma</button>
+
     <!-- Indicadores de Fases -->
     <div class="phase-indicators">
         <div class="phase-indicator active" onclick="navigateToPhase(1)"></div>
         <div class="phase-indicator" onclick="navigateToPhase(2)"></div>
         <div class="phase-indicator" onclick="navigateToPhase(3)"></div>
         <div class="phase-indicator" onclick="navigateToPhase(4)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(5)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(6)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(7)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(8)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(9)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(10)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(11)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(12)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(13)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(14)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(15)"></div>
     </div>
 
-    <!-- Estrutura de Enigmas de 1 a 15 -->
+    <!-- Estrutura de Enigmas de 1 a 4 -->
     <!-- Enigma 1 -->
     <div id="enigma1" class="enigma-container">
         <p><strong>Enigma 1:</strong> Decifre a mensagem em código Morse!</p>
@@ -135,12 +127,16 @@
         let timer;
         let timeLeft = 3600; // 60 minutos em segundos
         let currentPhase = 1; // Fase atual
+        let gameStarted = false; // Controle para verificar se o jogo começou
 
-        // Iniciar o temporizador e mostrar o primeiro enigma ao carregar a página
-        window.onload = function() {
-            startTimer();
-            navigateToPhase(currentPhase);
-        };
+        function startGame() {
+            if (!gameStarted) {
+                gameStarted = true;
+                startTimer();
+                navigateToPhase(currentPhase);
+                document.getElementById("startButton").style.display = "none"; // Ocultar botão de iniciar
+            }
+        }
 
         function startTimer() {
             timer = setInterval(() => {
@@ -180,4 +176,17 @@
             const feedbackId = `feedback${answerId.charAt(answerId.length - 1)}`;
             if (userAnswer === correctAnswer) {
                 document.getElementById(feedbackId).textContent = "Resposta correta!";
-               
+                // Habilitar fase seguinte
+                const nextPhaseIndicator = document.querySelector(`.phase-indicator:nth-child(${currentPhase + 1})`);
+                if (nextPhaseIndicator) {
+                    nextPhaseIndicator.classList.add('active');
+                }
+                // Navegar para o próximo enigma
+                navigateToPhase(parseInt(answerId.charAt(answerId.length - 1)) + 1);
+            } else {
+                document.getElementById(feedbackId).textContent = "Resposta incorreta. Tente novamente.";
+            }
+        }
+    </script>
+</body>
+</html>
