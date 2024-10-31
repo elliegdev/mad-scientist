@@ -125,6 +125,57 @@
     <script>
         let currentPhase = 1; // Fase inicial
 
-        // Função para mostrar o próxim
+        // Função para mostrar o próximo enigma e ocultar o atual
+        function showNextEnigma(currentEnigmaId, nextEnigmaId) {
+            document.getElementById(currentEnigmaId).style.display = 'none';
+            document.getElementById(nextEnigmaId).style.display = 'block';
+            updatePhaseIndicators();
+        }
 
+        // Função para verificar a resposta
+        function checkAnswer(inputId, correctAnswer, nextEnigmaId) {
+            const userAnswer = document.getElementById(inputId).value.trim().toLowerCase();
+            const feedbackElement = document.getElementById("feedback" + inputId[inputId.length - 1]);
 
+            if (userAnswer === correctAnswer) {
+                feedbackElement.textContent = "Resposta correta! Você pode prosseguir.";
+                currentPhase++; // Avança para a próxima fase
+                showNextEnigma(`enigma${currentPhase - 1}`, nextEnigmaId);
+                updatePhaseIndicators();
+            } else {
+                feedbackElement.textContent = "Resposta incorreta. Tente novamente.";
+            }
+        }
+
+        // Função para atualizar os indicadores de fase
+        function updatePhaseIndicators() {
+            const indicators = document.querySelectorAll('.phase-indicator');
+            indicators.forEach((indicator, index) => {
+                if (index < currentPhase) {
+                    indicator.classList.add('active'); // Marca como ativa
+                } else {
+                    indicator.classList.remove('active'); // Remove a marcação
+                }
+            });
+        }
+
+        // Função para permitir a navegação apenas para fases já resolvidas
+        function navigateToPhase(phase) {
+            if (phase <= currentPhase) {
+                showEnigma(`enigma${phase}`);
+            }
+        }
+
+        // Função para mostrar o enigma atual e esconder os outros
+        function showEnigma(enigmaId) {
+            document.querySelectorAll('.enigma-container').forEach(function(enigma) {
+                enigma.style.display = 'none'; // Esconde todas as fases
+            });
+            document.getElementById(enigmaId).style.display = 'block'; // Mostra a fase selecionada
+        }
+
+        // Inicializa com o primeiro enigma visível
+        document.getElementById("enigma1").style.display = "block";
+    </script>
+</body>
+</html>
