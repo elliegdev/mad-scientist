@@ -71,11 +71,7 @@
             margin-top: 50px;
             font-size: 0.9rem;
         }
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escape Room Cientista Maluca</title>
-    <link rel="stylesheet" href="style.css">
+    </style>
 </head>
 <body>
     <h1>Escape Room Cientista Vórtex</h1>
@@ -90,7 +86,7 @@
     <div id="enigma1" class="enigma-container">
         <p><strong>Enigma 1:</strong> Decifre a mensagem em código Morse!</p>
         <audio controls>
-            <source src="https://encurtador.com.br/Z972H" type="audio/mpeg">
+            <source src="audio_enigma1.mp3" type="audio/mpeg">
             Seu navegador não suporta o elemento de áudio.
         </audio>
         <button class="enigma-button" onclick="showNextEnigma('enigma2')">Próximo Enigma</button>
@@ -99,7 +95,7 @@
     <!-- Enigma 2 -->
     <div id="enigma2" class="enigma-container">
         <p><strong>Enigma 2:</strong> Manipule a imagem para revelar a palavra oculta!</p>
-        <img src="imagem_enigma2.jpg" alt="Imagem para o Enigma 2" style="width: 100%; max-width: 300px;">
+        <img src="imagem_enigma2.jpg" alt="Imagem para o Enigma 2" style="width: 100%; max-width: 300px; box-shadow: 0 0 15px #00ff00;">
         <button class="enigma-button" onclick="showNextEnigma('enigma3')">Próximo Enigma</button>
     </div>
 
@@ -120,7 +116,15 @@
         <p>Escape Room by Cientista Vórtex. Boa sorte em sua jornada sombria!</p>
     </footer>
 
-    <!-- Importando o JavaScript -->
-    <script src="script.js"></script>
+    <script>
+        // Função para mostrar o próximo enigma
+        function showNextEnigma(id) {
+            document.querySelectorAll('.enigma-container').forEach(function(enigma) {
+                enigma.style.display = 'none';
+            });
+            document.getElementById(id).style.display = 'block';
+        }
+    </script>
 </body>
 </html>
+
