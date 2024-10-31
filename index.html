@@ -84,11 +84,16 @@
 
     <!-- Estrutura de Enigmas de 1 a 3 -->
     <!-- Enigma 1 -->
+<!-- Enigma 1 -->
     <div id="enigma1" class="enigma-container">
         <p><strong>Enigma 1:</strong> Decifre a mensagem em código Morse!</p>
+        <audio controls>
+            <source src="audio_enigma1.mp3" type="audio/mpeg">
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
         <input type="text" id="answer1" placeholder="Digite sua resposta" />
         <p id="feedback1" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
-        <button onclick="checkAnswer('answer1', 'morse', 'enigma2')">Verificar Resposta</button>
+        <button class="enigma-button" onclick="checkAnswer('answer1', 'morse', 'enigma2')">Verificar Resposta</button>
     </div>
 
     <!-- Enigma 2 -->
