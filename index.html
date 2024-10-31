@@ -90,7 +90,8 @@
             Seu navegador não suporta o elemento de áudio.
         </audio>
         <input type="text" id="answer1" placeholder="Digite sua resposta" />
-        <button class="enigma-button" onclick="checkAnswer('answer1', 'resposta_correta_enigma1', 'enigma2')">Verificar Resposta</button>
+        <button class="enigma-button" onclick="checkAnswer('answer1', 'morse', 'enigma2')">Verificar Resposta</button>
+        <p id="feedback1" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
     </div>
 
     <!-- Enigma 2 -->
@@ -98,7 +99,8 @@
         <p><strong>Enigma 2:</strong> Manipule a imagem para revelar a palavra oculta!</p>
         <img src="imagem_enigma2.jpg" alt="Imagem para o Enigma 2" style="width: 100%; max-width: 300px; box-shadow: 0 0 15px #6959CD;">
         <input type="text" id="answer2" placeholder="Digite sua resposta" />
-        <button class="enigma-button" onclick="checkAnswer('answer2', 'resposta_correta_enigma2', 'enigma3')">Verificar Resposta</button>
+        <button class="enigma-button" onclick="checkAnswer('answer2', 'palavra', 'enigma3')">Verificar Resposta</button>
+        <p id="feedback2" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
     </div>
 
     <!-- Enigma 3 -->
@@ -109,7 +111,8 @@
             Seu navegador não suporta o elemento de áudio.
         </audio>
         <input type="text" id="answer3" placeholder="Digite sua resposta" />
-        <button class="enigma-button" onclick="checkAnswer('answer3', 'resposta_correta_enigma3', 'final')">Verificar Resposta</button>
+        <button class="enigma-button" onclick="checkAnswer('answer3', 'senha', 'final')">Verificar Resposta</button>
+        <p id="feedback3" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
     </div>
 
     <!-- Mensagem final -->
@@ -134,11 +137,14 @@
         // Função para verificar a resposta
         function checkAnswer(inputId, correctAnswer, nextEnigmaId) {
             var userAnswer = document.getElementById(inputId).value.trim().toLowerCase();
+            var feedbackElement = document.getElementById("feedback" + inputId[inputId.length - 1]);
+            
             if (userAnswer === correctAnswer) {
+                feedbackElement.textContent = "Resposta correta! Você pode prosseguir.";
+                // Desbloquear o próximo enigma
                 showNextEnigma(nextEnigmaId);
-                alert("Resposta correta! Prossiga para o próximo enigma.");
             } else {
-                alert("Resposta incorreta. Tente novamente.");
+                feedbackElement.textContent = "Resposta incorreta. Tente novamente.";
             }
         }
     </script>
