@@ -7,8 +7,8 @@
     <style>
         /* Estilo Geral */
         body {
-            background-color: #000;
-            color: #6959CD;
+            background-color: #000; /* Fundo preto */
+            color: #6959CD; /* Roxo neon */
             font-family: 'Courier New', Courier, monospace;
             text-align: center;
             display: flex;
@@ -18,6 +18,8 @@
             margin: 0;
             padding: 0 20px;
         }
+
+        /* Títulos com efeito neon */
         h1, h2 {
             color: #6959CD;
             text-shadow: 0 0 5px #6959CD, 0 0 10px #6959CD, 0 0 15px #6959CD;
@@ -27,6 +29,8 @@
             color: #6959CD;
             text-shadow: 0 0 5px #6959CD;
         }
+
+        /* Estilo das bolinhas para fases */
         .phase-indicators {
             display: flex;
             justify-content: center;
@@ -38,11 +42,16 @@
             margin: 0 5px;
             border-radius: 50%;
             background-color: #6959CD;
+            cursor: pointer;
             opacity: 0.5;
+            pointer-events: none; /* Desabilita cliques inicialmente */
         }
         .active {
             opacity: 1;
+            pointer-events: auto; /* Habilita cliques apenas para fases ativas */
         }
+
+        /* Contêiner de Enigmas */
         .enigma-container {
             display: none;
             margin-top: 20px;
@@ -50,6 +59,8 @@
             padding: 20px;
             box-shadow: 0 0 15px #6959CD;
         }
+
+        /* Rodapé */
         footer {
             color: #6959CD;
             text-shadow: 0 0 5px #6959CD;
@@ -63,86 +74,85 @@
     <h2>Desvende os Mistérios!</h2>
     <p>Você está preso no laboratório da Dra. Vórtex. Resolva os enigmas para escapar!</p>
 
+    <!-- Timer -->
+    <h2 id="timer">Tempo Restante: 60:00</h2>
+
+    <!-- Indicadores de Fases -->
     <div class="phase-indicators">
-        <div class="phase-indicator active"></div>
-        <div class="phase-indicator"></div>
-        <div class="phase-indicator"></div>
-        <div class="phase-indicator"></div>
+        <div class="phase-indicator active" onclick="navigateToPhase(1)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(2)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(3)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(4)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(5)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(6)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(7)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(8)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(9)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(10)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(11)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(12)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(13)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(14)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(15)"></div>
     </div>
 
-    <div id="enigma1" class="enigma-container" style="display: block;">
+    <!-- Estrutura de Enigmas de 1 a 15 -->
+    <!-- Enigma 1 -->
+    <div id="enigma1" class="enigma-container">
         <p><strong>Enigma 1:</strong> Decifre a mensagem em código Morse!</p>
         <audio controls>
             <source src="https://abrir.link/bJjYh" type="audio/mpeg">
             Seu navegador não suporta o elemento de áudio.
         </audio>
         <input type="text" id="answer1" placeholder="Digite sua resposta" />
-        <p id="feedback1" style="color: #ff0000;"></p>
-        <button onclick="checkAnswer(1, 'chave', 2)">Verificar Resposta</button>
+        <p id="feedback1" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
+        <button class="enigma-button" onclick="checkAnswer('answer1', 'chave', 'enigma2')">Verificar Resposta</button>
     </div>
 
+    <!-- Enigma 2 -->
     <div id="enigma2" class="enigma-container">
         <p><strong>Enigma 2:</strong> Manipule a imagem para revelar a palavra oculta!</p>
-        <img src="https://i.imgur.com/E3vrbXz.jpeg" alt="Imagem para o Enigma 2" style="width: 100%; max-width: 300px;">
+        <img src="https://i.imgur.com/E3vrbXz.jpeg" alt="Imagem para o Enigma 2" style="width: 100%; max-width: 300px; box-shadow: 0 0 15px #6959CD;">
         <input type="text" id="answer2" placeholder="Digite sua resposta" />
-        <p id="feedback2" style="color: #ff0000;"></p>
-        <button onclick="checkAnswer(2, 'para saida', 3)">Verificar Resposta</button>
+        <p id="feedback2" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
+        <button onclick="checkAnswer('answer2', 'para saida', 'enigma3')">Verificar Resposta</button>
     </div>
 
+    <!-- Enigma 3 -->
     <div id="enigma3" class="enigma-container">
-        <p><strong>Enigma 3:</strong> Decifre a mensagem usando cifra de César com deslocamento 4: "i qerxiv".</p>
+        <p><strong>Enigma 3:</strong> Decifre a mensagem usando cifra de César: "i qerxiv".</p>
         <input type="text" id="answer3" placeholder="Digite sua resposta" />
-        <p id="feedback3" style="color: #ff0000;"></p>
-        <button onclick="checkAnswer(3, 'e manter', 4)">Verificar Resposta</button>
+        <p id="feedback3" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
+        <button onclick="checkAnswer('answer3', 'e manter','enigma4')">Verificar Resposta</button>
     </div>
 
+    <!-- Enigma 4 -->
     <div id="enigma4" class="enigma-container">
-        <p><strong>Enigma 4:</strong> Decifre a mensagem em código binário: "01100001 00100000 01100011 01110010 01101001 01100001 01110100 01101001 01110110 01101001 01100100 01100001 01100100 01100101".</p>
+        <p><strong>Enigma 4:</strong> Decifre a mensagem em código binário: 01100001 00100000 01100011 01110010 01101001 01100001 01110100 01101001 01110110 01101001 01100100 01100001 01100100 01100101.</p>
         <input type="text" id="answer4" placeholder="Digite sua resposta" />
-        <p id="feedback4" style="color: #ff0000;"></p>
-        <button onclick="checkAnswer(4, 'a criatividade', 'final')">Verificar</button>
+        <p id="feedback4" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
+        <button onclick="checkAnswer('answer4', 'a criatividade','enigma5')">Verificar Resposta</button>
     </div>
 
-    <div id="final" class="enigma-container">
-        <p>Parabéns! Você completou todos os enigmas e escapou do laboratório!</p>
+    <!-- Adicione os Enigmas 5 a 15 aqui -->
+    <!-- Exemplo para o Enigma 5 -->
+    <div id="enigma5" class="enigma-container">
+        <p><strong>Enigma 5:</strong> Qual é o próximo número da sequência: 2, 4, 8, 16?</p>
+        <input type="text" id="answer5" placeholder="Digite sua resposta" />
+        <p id="feedback5" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
+        <button onclick="checkAnswer('answer5', '32', 'enigma6')">Verificar Resposta</button>
     </div>
 
-    <footer>
-        <p>Escape Room by Cientista Vórtex. Boa sorte em sua jornada sombria!</p>
-    </footer>
+    <!-- Continue adicionando enigmas até o Enigma 15 -->
+    <div id="enigma6" class="enigma-container">
+        <p><strong>Enigma 6:</strong> Qual é a capital da França?</p>
+        <input type="text" id="answer6" placeholder="Digite sua resposta" />
+        <p id="feedback6" style="color: #ff0000;"></p>
+        <button onclick="checkAnswer('answer6', 'paris', 'enigma7')">Verificar Resposta</button>
+    </div>
 
-    <script>
-        let currentPhase = 1;
-
-        function checkAnswer(enigmaNumber, correctAnswer, nextEnigma) {
-            const userAnswer = document.getElementById(`answer${enigmaNumber}`).value.trim().toLowerCase();
-            const feedbackElement = document.getElementById(`feedback${enigmaNumber}`);
-
-            if (userAnswer === correctAnswer) {
-                feedbackElement.textContent = "Resposta correta! Você pode prosseguir.";
-                if (nextEnigma === 'final') {
-                    document.getElementById(`enigma${enigmaNumber}`).style.display = 'none';
-                    document.getElementById('final').style.display = 'block';
-                } else {
-                    showNextEnigma(enigmaNumber, nextEnigma);
-                }
-            } else {
-                feedbackElement.textContent = "Resposta incorreta. Tente novamente.";
-            }
-        }
-
-        function showNextEnigma(currentEnigma, nextEnigma) {
-            document.getElementById(`enigma${currentEnigma}`).style.display = 'none';
-            document.getElementById(`enigma${nextEnigma}`).style.display = 'block';
-            updatePhaseIndicators(nextEnigma);
-        }
-
-        function updatePhaseIndicators(activePhase) {
-            const indicators = document.querySelectorAll('.phase-indicator');
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index + 1 <= activePhase);
-            });
-        }
-    </script>
-</body>
-</html>
+    <div id="enigma7" class="enigma-container">
+        <p><strong>Enigma 7:</strong> Resolva o quebra-cabeça: O que é, o que é: tem braços, mas não pode abraçar?</p>
+        <input type="text" id="answer7" placeholder="Digite sua resposta" />
+        <p id="feedback7" style="color: #ff0000;"></p>
+        <button onclick="checkAnswer('answer7', 'um relógio', 'enigma8')">Ver
