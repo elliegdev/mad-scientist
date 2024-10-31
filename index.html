@@ -124,8 +124,10 @@
   <div id="enigma3" class="enigma-container">
         <h2>Enigma 3</h2>
         <p>Decifre a mensagem usando cifra de César com deslocamento 4: "i qerxiv".</p>
-        <input type="text" id="input3">
-        <button class="verify-button" onclick="verifyAnswer(3, "e manter")">Verificar</button>
+        <input type="text" id="answer3" placeholder="Digite sua resposta" />
+        <p id="feedback2" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
+        <button onclick="checkAnswer('answer3', 'e manter','enigma4')">Verificar</button>
+      
     </div>
     <!-- Mensagem final -->
     
