@@ -1,46 +1,25 @@
-function iniciarJogo() {
-    document.getElementById("inicio").style.display = "none";
-    document.getElementById("sala1").style.display = "block";
-}
+let currentRoom = 1;
 
-function verificarResposta(sala) {
-    const respostas = {
-        1: "h2o",
-        2: "101010",
-        3: "caesar",
-        4: "150",
-        5: "97",
-        6: "21",
-        7: "15",
-        8: "terra",
-        9: "aegis",
-        10: "sos",
-        11: "20",
-        12: "iugoslavia",
-        13: "5",
-        14: "orion",
-        15: "memória de acesso aleatório",
-        16: "8",
-        17: "edison",
-        18: "azul vermelho",
-        19: "75",
-        20: "0"
-    };
-
-    let resposta = document.getElementById(`respostaSala${sala}`).value.toLowerCase();
-    let feedback = document.getElementById(`feedbackSala${sala}`);
-
-    if (resposta === respostas[sala]) {
-        feedback.textContent = "Correto! Avançando para a próxima sala...";
-        setTimeout(() => {
-            document.getElementById(`sala${sala}`).style.display = "none";
-            if (sala < 20) {
-                document.getElementById(`sala${sala + 1}`).style.display = "block";
-            } else {
-                feedback.textContent = "Parabéns! Você solucionou todos os enigmas e escapou do laboratório!";
-            }
-        }, 2000);
+function checkAnswer(room, correctAnswer) {
+    const userAnswer = document.getElementById(`answer-${room}`).value.toUpperCase();
+    if (userAnswer === correctAnswer.toUpperCase()) {
+        alert('Resposta correta! Você avançou para a próxima sala.');
+        document.getElementById(room).classList.add('hidden');
+        currentRoom++;
+        const nextRoom = `room-${currentRoom}`;
+        document.getElementById(nextRoom).classList.remove('hidden');
     } else {
-        feedback.textContent = "Resposta incorreta, tente novamente.";
+        alert('Resposta incorreta. Tente novamente.');
     }
 }
+
+function playAudio(audioPath) {
+    const audio = new Audio(audioPath);
+    audio.play();
+}
+
+// Mostrar a primeira sala ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById(`room-${currentRoom}`).classList.remove('hidden');
+});
+
