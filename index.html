@@ -109,7 +109,7 @@
         <button class="enigma-button" onclick="checkAnswer('answer1', 'chave', 'enigma2')">Verificar Resposta</button>
     </div>
 
-    <!-- Enigma 2 -->
+    <!-- Adicione os Enigmas 2 a 15 aqui, como no seu código anterior -->
     <div id="enigma2" class="enigma-container">
         <p><strong>Enigma 2:</strong> Manipule a imagem para revelar a palavra oculta!</p>
         <img src="https://i.imgur.com/E3vrbXz.jpeg" alt="Imagem para o Enigma 2" style="width: 100%; max-width: 300px; box-shadow: 0 0 15px #6959CD;">
@@ -118,7 +118,8 @@
         <button onclick="checkAnswer('answer2', 'para saida', 'enigma3')">Verificar Resposta</button>
     </div>
 
-    <!-- Enigma 3 -->
+    <!-- Continue adicionando os enigmas conforme necessário -->
+    <!-- Exemplo para o Enigma 3 -->
     <div id="enigma3" class="enigma-container">
         <p><strong>Enigma 3:</strong> Decifre a mensagem usando cifra de César: "i qerxiv".</p>
         <input type="text" id="answer3" placeholder="Digite sua resposta" />
@@ -126,33 +127,57 @@
         <button onclick="checkAnswer('answer3', 'e manter','enigma4')">Verificar Resposta</button>
     </div>
 
-    <!-- Enigma 4 -->
-    <div id="enigma4" class="enigma-container">
-        <p><strong>Enigma 4:</strong> Decifre a mensagem em código binário: 01100001 00100000 01100011 01110010 01101001 01100001 01110100 01101001 01110110 01101001 01100100 01100001 01100100 01100101.</p>
-        <input type="text" id="answer4" placeholder="Digite sua resposta" />
-        <p id="feedback4" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
-        <button onclick="checkAnswer('answer4', 'a criatividade','enigma5')">Verificar Resposta</button>
-    </div>
+    <!-- Adicione mais enigmas conforme necessário... -->
 
-    <!-- Adicione os Enigmas 5 a 15 aqui -->
-    <!-- Exemplo para o Enigma 5 -->
-    <div id="enigma5" class="enigma-container">
-        <p><strong>Enigma 5:</strong> Qual é o próximo número da sequência: 2, 4, 8, 16?</p>
-        <input type="text" id="answer5" placeholder="Digite sua resposta" />
-        <p id="feedback5" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
-        <button onclick="checkAnswer('answer5', '32', 'enigma6')">Verificar Resposta</button>
-    </div>
+    <script>
+        let timer;
+        let timeLeft = 3600; // 60 minutos em segundos
 
-    <!-- Continue adicionando enigmas até o Enigma 15 -->
-    <div id="enigma6" class="enigma-container">
-        <p><strong>Enigma 6:</strong> Qual é a capital da França?</p>
-        <input type="text" id="answer6" placeholder="Digite sua resposta" />
-        <p id="feedback6" style="color: #ff0000;"></p>
-        <button onclick="checkAnswer('answer6', 'paris', 'enigma7')">Verificar Resposta</button>
-    </div>
+        function startTimer() {
+            timer = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    alert("O tempo acabou! Você não conseguiu escapar.");
+                    // Adicione lógica para o que deve acontecer quando o tempo acabar
+                } else {
+                    timeLeft--;
+                    updateTimerDisplay();
+                }
+            }, 1000);
+        }
 
-    <div id="enigma7" class="enigma-container">
-        <p><strong>Enigma 7:</strong> Resolva o quebra-cabeça: O que é, o que é: tem braços, mas não pode abraçar?</p>
-        <input type="text" id="answer7" placeholder="Digite sua resposta" />
-        <p id="feedback7" style="color: #ff0000;"></p>
-        <button onclick="checkAnswer('answer7', 'um relógio', 'enigma8')">Ver
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById("timer").textContent = `Tempo Restante: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        function navigateToPhase(phase) {
+            // Ocultar todos os enigmas
+            const enigmas = document.querySelectorAll('.enigma-container');
+            enigmas.forEach(enigma => {
+                enigma.style.display = 'none';
+            });
+            // Mostrar o enigma correspondente
+            const currentEnigma = document.getElementById(`enigma${phase}`);
+            currentEnigma.style.display = 'block';
+
+            // Iniciar o temporizador se for o primeiro enigma
+            if (phase === 1) {
+                startTimer();
+            }
+        }
+
+        function checkAnswer(answerId, correctAnswer, nextEnigmaId) {
+            const userAnswer = document.getElementById(answerId).value.trim().toLowerCase();
+            const feedbackId = `feedback${answerId.charAt(answerId.length - 1)}`;
+            if (userAnswer === correctAnswer) {
+                document.getElementById(feedbackId).textContent = "Resposta correta!";
+                navigateToPhase(parseInt(answerId.charAt(answerId.length - 1)) + 1); // Navegar para o próximo enigma
+            } else {
+                document.getElementById(feedbackId).textContent = "Resposta incorreta. Tente novamente.";
+            }
+        }
+    </script>
+</body>
+</html>
