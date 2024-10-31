@@ -89,14 +89,16 @@
             <source src="audio_enigma1.mp3" type="audio/mpeg">
             Seu navegador não suporta o elemento de áudio.
         </audio>
-        <button class="enigma-button" onclick="showNextEnigma('enigma2')">Próximo Enigma</button>
+        <input type="text" id="answer1" placeholder="Digite sua resposta" />
+        <button class="enigma-button" onclick="checkAnswer('answer1', 'resposta_correta_enigma1', 'enigma2')">Verificar Resposta</button>
     </div>
 
     <!-- Enigma 2 -->
     <div id="enigma2" class="enigma-container">
         <p><strong>Enigma 2:</strong> Manipule a imagem para revelar a palavra oculta!</p>
         <img src="imagem_enigma2.jpg" alt="Imagem para o Enigma 2" style="width: 100%; max-width: 300px; box-shadow: 0 0 15px #6959CD;">
-        <button class="enigma-button" onclick="showNextEnigma('enigma3')">Próximo Enigma</button>
+        <input type="text" id="answer2" placeholder="Digite sua resposta" />
+        <button class="enigma-button" onclick="checkAnswer('answer2', 'resposta_correta_enigma2', 'enigma3')">Verificar Resposta</button>
     </div>
 
     <!-- Enigma 3 -->
@@ -106,7 +108,8 @@
             <source src="audio_enigma3.mp3" type="audio/mpeg">
             Seu navegador não suporta o elemento de áudio.
         </audio>
-        <button class="enigma-button" onclick="showNextEnigma('final')">Concluir</button>
+        <input type="text" id="answer3" placeholder="Digite sua resposta" />
+        <button class="enigma-button" onclick="checkAnswer('answer3', 'resposta_correta_enigma3', 'final')">Verificar Resposta</button>
     </div>
 
     <!-- Mensagem final -->
@@ -126,6 +129,17 @@
                 enigma.style.display = 'none';
             });
             document.getElementById(id).style.display = 'block';
+        }
+
+        // Função para verificar a resposta
+        function checkAnswer(inputId, correctAnswer, nextEnigmaId) {
+            var userAnswer = document.getElementById(inputId).value.trim().toLowerCase();
+            if (userAnswer === correctAnswer) {
+                showNextEnigma(nextEnigmaId);
+                alert("Resposta correta! Prossiga para o próximo enigma.");
+            } else {
+                alert("Resposta incorreta. Tente novamente.");
+            }
         }
     </script>
 </body>
