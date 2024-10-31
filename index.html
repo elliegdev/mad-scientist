@@ -30,23 +30,23 @@
             text-shadow: 0 0 5px #6959CD;
         }
 
-        /* Botão de Enigma */
-        .enigma-button {
-            background-color: #330033; /* Fundo roxo escuro */
-            color: #6959CD;
-            border: 2px solid #6959CD;
-            padding: 10px 20px;
-            font-size: 1rem;
-            margin: 10px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 5px #6959CD, 0 0 10px #6959CD;
+        /* Estilo das bolinhas para fases */
+        .phase-indicators {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
         }
-        .enigma-button:hover {
+        .phase-indicator {
+            width: 15px;
+            height: 15px;
+            margin: 0 5px;
+            border-radius: 50%;
             background-color: #6959CD;
-            color: #000;
-            box-shadow: 0 0 10px #6959CD, 0 0 20px #6959CD;
+            cursor: pointer;
+            opacity: 0.5;
+        }
+        .active {
+            opacity: 1;
         }
 
         /* Contêiner de Enigmas */
@@ -78,20 +78,25 @@
     <h2>Desvende os Mistérios!</h2>
     <p>Você está preso no laboratório da Dra. Vórtex. Resolva os enigmas para escapar!</p>
 
-    <!-- Botão inicial para começar o Enigma 1 -->
-    <button class="enigma-button" onclick="showNextEnigma('enigma1')">Iniciar Enigma 1</button>
+    <!-- Indicadores de Fases -->
+    <div class="phase-indicators">
+        <div class="phase-indicator active" onclick="showPhase(1)"></div>
+        <div class="phase-indicator" onclick="showPhase(2)"></div>
+        <div class="phase-indicator" onclick="showPhase(3)"></div>
+        <!-- Adicione mais bolinhas conforme necessário -->
+    </div>
 
-    <!-- Estrutura de Enigmas de 1 a 3 (expanda para mais enigmas conforme necessário) -->
+    <!-- Estrutura de Enigmas de 1 a 3 -->
     <!-- Enigma 1 -->
     <div id="enigma1" class="enigma-container">
         <p><strong>Enigma 1:</strong> Decifre a mensagem em código Morse!</p>
         <audio controls>
-            <source src="https://encurtador.com.br/Z972H" type="audio/mpeg">
+            <source src="audio_enigma1.mp3" type="audio/mpeg">
             Seu navegador não suporta o elemento de áudio.
         </audio>
         <input type="text" id="answer1" placeholder="Digite sua resposta" />
-        <button class="enigma-button" onclick="checkAnswer('answer1', 'chave', 'enigma2')">Verificar Resposta</button>
         <p id="feedback1" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
+        <button class="enigma-button" onclick="checkAnswer('answer1', 'morse', 'enigma2')">Verificar Resposta</button>
     </div>
 
     <!-- Enigma 2 -->
@@ -99,8 +104,8 @@
         <p><strong>Enigma 2:</strong> Manipule a imagem para revelar a palavra oculta!</p>
         <img src="imagem_enigma2.jpg" alt="Imagem para o Enigma 2" style="width: 100%; max-width: 300px; box-shadow: 0 0 15px #6959CD;">
         <input type="text" id="answer2" placeholder="Digite sua resposta" />
-        <button class="enigma-button" onclick="checkAnswer('answer2', 'palavra', 'enigma3')">Verificar Resposta</button>
         <p id="feedback2" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
+        <button class="enigma-button" onclick="checkAnswer('answer2', 'palavra', 'enigma3')">Verificar Resposta</button>
     </div>
 
     <!-- Enigma 3 -->
@@ -111,8 +116,8 @@
             Seu navegador não suporta o elemento de áudio.
         </audio>
         <input type="text" id="answer3" placeholder="Digite sua resposta" />
-        <button class="enigma-button" onclick="checkAnswer('answer3', 'senha', 'final')">Verificar Resposta</button>
         <p id="feedback3" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
+        <button class="enigma-button" onclick="checkAnswer('answer3', 'senha', 'final')">Verificar Resposta</button>
     </div>
 
     <!-- Mensagem final -->
@@ -126,6 +131,8 @@
     </footer>
 
     <script>
+        let currentPhase = 1; // Fase atual
+
         // Função para mostrar o próximo enigma
         function showNextEnigma(id) {
             document.querySelectorAll('.enigma-container').forEach(function(enigma) {
@@ -143,10 +150,37 @@
                 feedbackElement.textContent = "Resposta correta! Você pode prosseguir.";
                 // Desbloquear o próximo enigma
                 showNextEnigma(nextEnigmaId);
+                updatePhaseIndicators(currentPhase); // Atualiza as bolinhas
+                currentPhase++; // Avança para a próxima fase
             } else {
                 feedbackElement.textContent = "Resposta incorreta. Tente novamente.";
             }
         }
+
+        // Função para mostrar a fase selecionada
+        function showPhase(phase) {
+            currentPhase = phase; // Atualiza a fase atual
+            document.querySelectorAll('.enigma-container').forEach(function(enigma) {
+                enigma.style.display = 'none'; // Esconde todas as fases
+            });
+            showNextEnigma('enigma' + phase); // Mostra a fase selecionada
+            updatePhaseIndicators(phase); // Atualiza as bolinhas
+        }
+
+        // Função para atualizar os indicadores de fase
+        function updatePhaseIndicators(activePhase) {
+            const indicators = document.querySelectorAll('.phase-indicator');
+            indicators.forEach((indicator, index) => {
+                if (index < activePhase) {
+                    indicator.classList.add('active'); // Marca como ativa
+                } else {
+                    indicator.classList.remove('active'); // Remove a marcação
+                }
+            });
+        }
+
+        // Inicializa a primeira fase
+        showNextEnigma('enigma1');
     </script>
 </body>
 </html>
