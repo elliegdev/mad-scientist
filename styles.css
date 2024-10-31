@@ -1,49 +1,85 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #1a1a1a;
-    color: #f0f0f0;
-    margin: 0;
-    padding: 0;
-}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room Cientista Maluca</title>
+    <style>
+        /* Estilo Geral */
+        body {
+            background: url('seu_fundo_de_halloween.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #f5f5f5;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
 
-header {
-    text-align: center;
-    padding: 20px;
-    background-color: #333;
-}
+        /* Sobreposição sombria para melhor visibilidade */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
 
-h1 {
-    margin: 0;
-}
+        /* Títulos e textos */
+        h1, h2 {
+            color: #ff4500;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+        }
+        p {
+            font-size: 1.2rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+        }
 
-.room {
-    margin: 20px;
-    padding: 15px;
-    border: 2px solid #444;
-    border-radius: 5px;
-    background-color: #222;
-}
+        /* Botões de Enigma */
+        .enigma-button {
+            background-color: #8b0000;
+            color: #f5f5f5;
+            border: 2px solid #f5f5f5;
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+        }
+        .enigma-button:hover {
+            background-color: #ff4500;
+            color: #000;
+        }
 
-button {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #555;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+        /* Áudio */
+        audio {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Escape Room Cientista Vórtex</h1>
+    <h2>Desvende os Mistérios!</h2>
+    <p>Você está preso no laboratório da Dra. Vórtex. Resolva os enigmas para escapar!</p>
+    
+    <!-- Botões de Enigma -->
+    <button class="enigma-button">Iniciar Enigma 1</button>
+    <button class="enigma-button">Iniciar Enigma 2</button>
+    <button class="enigma-button">Iniciar Enigma 3</button>
+    
+    <!-- Exemplo de Áudio -->
+    <audio controls>
+        <source src="audio_misterioso.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+</body>
+</html>
 
-button:hover {
-    background-color: #777;
-}
-
-.hidden {
-    display: none;
-}
-
-img, video {
-    max-width: 100%;
-    height: auto;
-    margin: 10px 0;
-}
