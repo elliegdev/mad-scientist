@@ -1,57 +1,181 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escape Room - Cientista Maluca</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Escape Room da Cientista Vórtex</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div id="inicio" class="section">
-            <h1>Bem-vindo ao Laboratório do Dra. Vortex!</h1>
-            <p>Resolva os enigmas para escapar do laboratório do cientista maluca. Boa sorte!</p>
-            <button onclick="iniciarJogo()">Começar</button>
-        </div>
+    <header>
+        <h1>Escape Room da Cientista Vórtex</h1>
+        <p>Resolva os enigmas para avançar e escapar do laboratório!</p>
+    </header>
 
-        <!-- Gerando as 20 salas -->
-        <div id="sala1" class="section" style="display: none;">
-            <h2>Sala 1: Elementos Secretos</h2>
-            <p>Misture os elementos que somem até 28 e formem uma substância líquida.</p>
-            <input type="text" id="respostaSala1" placeholder="Digite sua resposta">
-            <button onclick="verificarResposta(1)">Enviar Resposta</button>
-            <p id="feedbackSala1"></p>
-        </div>
+    <!-- Sala 1 -->
+    <section id="room-1" class="room">
+        <h2>Sala 1: Código Morse</h2>
+        <button onclick="playAudio('audio/morse-code.mp3')">Ouvir Código Morse</button>
+        <input type="text" id="answer-room-1" placeholder="Digite a resposta">
+        <button onclick="checkAnswer('room-1', 'CHAVE')">Verificar</button>
+    </section>
 
-        <div id="sala2" class="section" style="display: none;">
-            <h2>Sala 2: Máquina do Tempo Binária</h2>
-            <p>Converta o número 42 em binário.</p>
-            <input type="text" id="respostaSala2" placeholder="Digite sua resposta">
-            <button onclick="verificarResposta(2)">Enviar Resposta</button>
-            <p id="feedbackSala2"></p>
-        </div>
+    <!-- Sala 2 -->
+    <section id="room-2" class="room hidden">
+        <h2>Sala 2: Quebra-Cabeça Visual</h2>
+        <img src="images/puzzle1.png" alt="Quebra-cabeça" id="puzzle-image">
+        <input type="text" id="answer-room-2" placeholder="Digite a resposta">
+        <button onclick="checkAnswer('room-2', 'ENIGMA')">Verificar</button>
+    </section>
 
-        <!-- Continua para as salas restantes -->
-        <!-- Aqui vamos copiar e colar a estrutura e conteúdo das próximas salas até a sala 20 -->
+    <!-- Sala 3 -->
+    <section id="room-3" class="room hidden">
+        <h2>Sala 3: Sequência Numérica</h2>
+        <p>Decifre a sequência correta: 1, 4, 9, 16, ...</p>
+        <input type="text" id="answer-room-3" placeholder="Digite o próximo número">
+        <button onclick="checkAnswer('room-3', '25')">Verificar</button>
+    </section>
 
-        <div id="sala3" class="section" style="display: none;">
-            <h2>Sala 3: Cifra de César</h2>
-            <p>Decifre `Fdhvdu` com rotação -3.</p>
-            <input type="text" id="respostaSala3" placeholder="Digite sua resposta">
-            <button onclick="verificarResposta(3)">Enviar Resposta</button>
-            <p id="feedbackSala3"></p>
-        </div>
+    <!-- Sala 4 -->
+    <section id="room-4" class="room hidden">
+        <h2>Sala 4: Mensagem Cifrada</h2>
+        <p>Decifre a mensagem: GUR DHVPX</p>
+        <input type="text" id="answer-room-4" placeholder="Digite a resposta">
+        <button onclick="checkAnswer('room-4', 'THE QUICK')">Verificar</button>
+    </section>
 
-        <!-- Seguem as estruturas até a sala 20... -->
-        
-        <div id="sala20" class="section" style="display: none;">
-            <h2>Sala 20: Enigma de Paridade</h2>
-            <p>Qual é a resposta de 6 % 2?</p>
-            <input type="text" id="respostaSala20" placeholder="Digite sua resposta">
-            <button onclick="verificarResposta(20)">Enviar Resposta</button>
-            <p id="feedbackSala20"></p>
-        </div>
-    </div>
+    <!-- Sala 5 -->
+    <section id="room-5" class="room hidden">
+        <h2>Sala 5: Cálculo Matemático</h2>
+        <p>Qual é a soma de 7 + 5?</p>
+        <input type="text" id="answer-room-5" placeholder="Digite a resposta">
+        <button onclick="checkAnswer('room-5', '12')">Verificar</button>
+    </section>
+
+    <!-- Sala 6 -->
+    <section id="room-6" class="room hidden">
+        <h2>Sala 6: Quebra-Cabeça de Palavras</h2>
+        <p>Forme uma palavra a partir das letras: A, T, C, E</p>
+        <input type="text" id="answer-room-6" placeholder="Digite a resposta">
+        <button onclick="checkAnswer('room-6', 'CATE')">Verificar</button>
+    </section>
+
+    <!-- Sala 7 -->
+    <section id="room-7" class="room hidden">
+        <h2>Sala 7: Código Binário</h2>
+        <p>Decifre o código binário: 01001000 01100101 01101100 01101100 01101111</p>
+        <input type="text" id="answer-room-7" placeholder="Digite a resposta">
+        <button onclick="checkAnswer('room-7', 'HELLO')">Verificar</button>
+    </section>
+
+    <!-- Sala 8 -->
+    <section id="room-8" class="room hidden">
+        <h2>Sala 8: Quebra-Cabeça de Imagens</h2>
+        <img src="images/puzzle2.png" alt="Quebra-cabeça" id="puzzle-image">
+        <input type="text" id="answer-room-8" placeholder="Digite a resposta">
+        <button onclick="checkAnswer('room-8', 'PUZZLE')">Verificar</button>
+    </section>
+
+    <!-- Sala 9 -->
+    <section id="room-9" class="room hidden">
+        <h2>Sala 9: Jogo da Memória</h2>
+        <p>Qual é o par que você encontrou?</p>
+        <input type="text" id="answer-room-9" placeholder="Digite a resposta">
+        <button onclick="checkAnswer('room-9', 'MEMORY')">Verificar</button>
+    </section>
+
+    <!-- Sala 10 -->
+    <section id="room-10" class="room hidden">
+        <h2>Sala 10: Código de César</h2>
+        <p>Decifre a mensagem: GUR YNML</p>
+        <input type="text" id="answer-room-10" placeholder="Digite a resposta">
+        <button onclick="checkAnswer('room-10', 'THE MAIL')">Verificar</button>
+    </section>
+
+    <!-- Sala 11 -->
+    <section id="room-11" class="room hidden">
+        <h2>Sala 11: Mistério do Código</h2>
+        <p>Resolva o código: 2B ||!2B?</p>
+        <input type="text" id="answer-room-11" placeholder="Digite a resposta">
+        <button onclick="checkAnswer('room-11', 'TO BE OR NOT TO BE')">Verificar</button>
+    </section>
+
+    <!-- Sala 12 -->
+    <section id="room-12" class="room hidden">
+        <h2>Sala 12: Sequência de Fibonacci</h2>
+        <p>Qual é o próximo número na sequência: 0, 1, 1, 2, 3, 5, ...?</p>
+        <input type="text" id="answer-room-12" placeholder="Digite a resposta">
+        <button onclick="checkAnswer('room-12', '8')">Verificar</button>
+    </section>
+
+    <!-- Sala 13 -->
+    <section id="room-13" class="room hidden">
+        <h2>Sala 13: Enigma do Som</h2>
+        <button onclick="playAudio('audio/sound-clue.mp3')">Ouvir Pista Sonora</button>
+        <input type="text" id="answer-room-13" placeholder="Digite a resposta">
+        <button onclick="checkAnswer('room-13', 'SOUND')">Verificar</button>
+    </section>
+
+    <!-- Sala 14 -->
+    <section id="room-14" class="room hidden">
+        <h2>Sala 14: Enigma do Dicionário</h2>
+        <p>Qual é o significado da palavra "ENIGMA"?</p>
+        <input type="text" id="answer-room-14" placeholder="Digite a resposta">
+        <button onclick="checkAnswer('room-14', 'MISTÉRIO')">Verificar</button>
+    </section>
+
+    <!-- Sala 15 -->
+    <section id="room-15" class="room hidden">
+        <h2>Sala 15: Mistério da Música</h2>
+        <button onclick="playAudio('audio/music-clip.mp3')">Ouvir Música</button>
+        <input type="text" id="answer-room-15" placeholder="Digite a resposta">
+        <button onclick="checkAnswer('room-15', 'MELODY')">Verificar</button>
+    </section>
+
+    <!-- Sala 16 -->
+    <section id="room-16" class="room hidden">
+        <h2>Sala 16: Enigma de Números Romanos</h2>
+        <p>Decifre o número: X + V + II</p>
+        <input type="text" id="answer-room-16" placeholder="Digite a resposta">
+        <button onclick="checkAnswer('room-16', '17')">Verificar</button>
+    </section>
+
+    <!-- Sala 17 -->
+    <section id="room-17" class="room hidden">
+        <   <section id="enigma17" class="enigma">
+            <h2>Enigma 17: Código do Cofre</h2>
+            <p>Imite a postura para abrir o cofre.</p>
+            <button onclick="verificarEnigma2()">Verificar Postura</button>
+            <p id="resultadoEnigma17"></p>
+        </section>
+    <!-- Sala 18 -->
+    <section id="room-18" class="room hidden">
+        <h2>Sala 18: Enigma do Código QR</h2>
+        <p>Escaneie o código QR e decifre a mensagem oculta.</p>
+        <img src="images/qr-code.png" alt="Código QR" id="qr-code">
+        <input type="text" id="answer-room-18" placeholder="Digite a resposta">
+        <button onclick="checkAnswer('room-18', 'HIDDEN MESSAGE')">Verificar</button>
+    </section>
+
+    <!-- Sala 19 -->
+    <section id="room-19" class="room hidden">
+        <h2>Sala 19: Mistério do Vídeo</h2>
+        <p>Assista ao vídeo e responda: Qual é a palavra mágica?</p>
+        <video controls>
+            <source src="audio/video-clip.mp4" type="video/mp4">
+            Seu navegador não suporta o elemento de vídeo.
+        </video>
+        <input type="text" id="answer-room-19" placeholder="Digite a resposta">
+        <button onclick="checkAnswer('room-19', 'PLEASE')">Verificar</button>
+    </section>
+
+    <!-- Sala 20 -->
+    <section id="room-20" class="room hidden">
+        <h2>Sala 20: Enigma Final</h2>
+        <p>Qual é a soma das respostas anteriores?</p>
+        <input type="text" id="answer-room-20" placeholder="Digite a resposta">
+        <button onclick="checkAnswer('room-20', 'TOTAL')">Verificar</button>
+    </section>
 
     <script src="script.js"></script>
 </body>
