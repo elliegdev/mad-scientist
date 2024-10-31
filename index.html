@@ -88,21 +88,23 @@
     <div id="enigma1" class="enigma-container">
         <p><strong>Enigma 1:</strong> Decifre a mensagem em código Morse!</p>
         <audio controls>
-            <source src="audio_enigma1.mp3" type="audio/mpeg">
+            <source src="https://acesse.dev/L5pIq" type="audio/mpeg">
             Seu navegador não suporta o elemento de áudio.
         </audio>
         <input type="text" id="answer1" placeholder="Digite sua resposta" />
         <p id="feedback1" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
-        <button class="enigma-button" onclick="checkAnswer('answer1', 'morse', 'enigma2')">Verificar Resposta</button>
+        <button class="enigma-button" onclick="checkAnswer('answer1', 'chave', 'enigma2')">Verificar Resposta</button>
+         <button class="enigma-button" onclick="checkAnswer('answer1', 'Chave', 'enigma2')">Verificar Resposta</button>
     </div>
 
     <!-- Enigma 2 -->
     <div id="enigma2" class="enigma-container">
         <p><strong>Enigma 2:</strong> Manipule a imagem para revelar a palavra oculta!</p>
-        <img src="imagem_enigma2.jpg" alt="Imagem para o Enigma 2" style="width: 100%; max-width: 300px; box-shadow: 0 0 15px #6959CD;">
+        <img src="https://imgur.com/a/zNwYgqp" alt="Imagem para o Enigma 2" style="width: 100%; max-width: 300px; box-shadow: 0 0 15px #6959CD;">
         <input type="text" id="answer2" placeholder="Digite sua resposta" />
         <p id="feedback2" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
-        <button onclick="checkAnswer('answer2', 'palavra', 'enigma3')">Verificar Resposta</button>
+        <button onclick="checkAnswer('answer2', 'para saida', 'enigma3')">Verificar Resposta</button>
+        <button onclick="checkAnswer('answer2', 'Para saida', 'enigma3')">Verificar Resposta</button>
     </div>
 
     <!-- Enigma 3 -->
