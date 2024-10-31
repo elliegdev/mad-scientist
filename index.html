@@ -7,7 +7,7 @@
     <style>
         /* Estilo Geral */
         body {
-            background-color: #000; /* Fundo preto para ambiente sombrio */
+            background-color: #000; /* Fundo preto */
             color: #00ff00; /* Verde neon */
             font-family: 'Courier New', Courier, monospace;
             text-align: center;
@@ -81,7 +81,7 @@
     <!-- Botão inicial para começar o Enigma 1 -->
     <button class="enigma-button" onclick="showNextEnigma('enigma1')">Iniciar Enigma 1</button>
 
-    <!-- Estrutura de Enigmas de 1 a 20 -->
+    <!-- Estrutura de Enigmas de 1 a 3 (expanda para mais enigmas conforme necessário) -->
     <!-- Enigma 1 -->
     <div id="enigma1" class="enigma-container">
         <p><strong>Enigma 1:</strong> Decifre a mensagem em código Morse!</p>
@@ -99,15 +99,18 @@
         <button class="enigma-button" onclick="showNextEnigma('enigma3')">Próximo Enigma</button>
     </div>
 
-    <!-- Continue esta estrutura para os enigmas de 3 a 19 -->
-
-    <!-- Enigma 20 -->
-    <div id="enigma20" class="enigma-container">
-        <p><strong>Enigma 20:</strong> Enigma final! Decifre o código para escapar!</p>
+    <!-- Enigma 3 -->
+    <div id="enigma3" class="enigma-container">
+        <p><strong>Enigma 3:</strong> Ouça com atenção o áudio e descubra a senha!</p>
         <audio controls>
-            <source src="audio_enigma20.mp3" type="audio/mpeg">
+            <source src="audio_enigma3.mp3" type="audio/mpeg">
             Seu navegador não suporta o elemento de áudio.
         </audio>
+        <button class="enigma-button" onclick="showNextEnigma('final')">Concluir</button>
+    </div>
+
+    <!-- Mensagem final -->
+    <div id="final" class="enigma-container">
         <p>Parabéns! Você completou todos os enigmas e escapou do laboratório!</p>
     </div>
 
@@ -127,4 +130,3 @@
     </script>
 </body>
 </html>
-
