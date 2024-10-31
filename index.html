@@ -3,14 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escape Room da Cientista Vórtex</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Escape Room Cientista Maluca</title>
+    <style>
+        /* Estilo Geral */
+        body {
+            background: url('seu_fundo_de_halloween.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #f5f5f5;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Sobreposição sombria para melhor visibilidade */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+
+        /* Títulos e textos */
+        h1, h2 {
+            color: #ff4500;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+        }
+        p {
+            font-size: 1.2rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Botões de Enigma */
+        .enigma-button {
+            background-color: #8b0000;
+            color: #f5f5f5;
+            border: 2px solid #f5f5f5;
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+        }
+        .enigma-button:hover {
+            background-color: #ff4500;
+            color: #000;
+        }
+
+        /* Áudio */
+        audio {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Escape Room da Cientista Vórtex</h1>
-        <p>Resolva os enigmas para avançar e escapar do laboratório!</p>
-    </header>
+    <h1>Escape Room Cientista Vórtex</h1>
+    <h2>Desvende os Mistérios!</h2>
+    <p>Você está preso no laboratório da Dra. Vórtex. Resolva os enigmas para escapar!</p>
+    
+    <!-- Botões de Enigma -->
+    <button class="enigma-button">Iniciar Enigma 1</button>
+    <button class="enigma-button">Iniciar Enigma 2</button>
+    <button class="enigma-button">Iniciar Enigma 3</button>
+    
+    <!-- Exemplo de Áudio -->
+    <audio controls>
+        <source src="audio_misterioso.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+</body>
+</html>
 
     <!-- Sala 1 -->
     <section id="room-1" class="room">
