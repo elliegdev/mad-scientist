@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,7 +9,7 @@
         /* Estilo Geral */
         body {
             background-color: #000; /* Fundo preto */
-            color: #00ff00; /* Verde neon */
+            color: #cc00ff; /* Roxo neon */
             font-family: 'Courier New', Courier, monospace;
             text-align: center;
             display: flex;
@@ -21,53 +22,53 @@
 
         /* Títulos com efeito neon */
         h1, h2 {
-            color: #00ff00;
-            text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
+            color: #cc00ff;
+            text-shadow: 0 0 5px #cc00ff, 0 0 10px #cc00ff, 0 0 15px #cc00ff;
         }
         p {
             font-size: 1.2rem;
-            color: #00ff00;
-            text-shadow: 0 0 5px #00ff00;
+            color: #cc00ff;
+            text-shadow: 0 0 5px #cc00ff;
         }
 
         /* Botão de Enigma */
         .enigma-button {
-            background-color: #003300; /* Fundo verde escuro */
-            color: #00ff00;
-            border: 2px solid #00ff00;
+            background-color: #330033; /* Fundo roxo escuro */
+            color: #cc00ff;
+            border: 2px solid #cc00ff;
             padding: 10px 20px;
             font-size: 1rem;
             margin: 10px;
             cursor: pointer;
             text-transform: uppercase;
             transition: all 0.3s ease;
-            box-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+            box-shadow: 0 0 5px #cc00ff, 0 0 10px #cc00ff;
         }
         .enigma-button:hover {
-            background-color: #00ff00;
+            background-color: #cc00ff;
             color: #000;
-            box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+            box-shadow: 0 0 10px #cc00ff, 0 0 20px #cc00ff;
         }
 
         /* Contêiner de Enigmas */
         .enigma-container {
             display: none;
             margin-top: 20px;
-            border: 1px solid #00ff00;
+            border: 1px solid #cc00ff;
             padding: 20px;
-            box-shadow: 0 0 15px #00ff00;
+            box-shadow: 0 0 15px #cc00ff;
         }
 
         /* Áudio */
         audio {
             margin-top: 20px;
-            border: 1px solid #00ff00;
+            border: 1px solid #cc00ff;
         }
 
         /* Rodapé */
         footer {
-            color: #00ff00;
-            text-shadow: 0 0 5px #00ff00;
+            color: #cc00ff;
+            text-shadow: 0 0 5px #cc00ff;
             margin-top: 50px;
             font-size: 0.9rem;
         }
@@ -79,54 +80,5 @@
     <p>Você está preso no laboratório da Dra. Vórtex. Resolva os enigmas para escapar!</p>
 
     <!-- Botão inicial para começar o Enigma 1 -->
-    <button class="enigma-button" onclick="showNextEnigma('enigma1')">Iniciar Enigma 1</button>
+    <button class="enigma-butt
 
-    <!-- Estrutura de Enigmas de 1 a 3 (expanda para mais enigmas conforme necessário) -->
-    <!-- Enigma 1 -->
-    <div id="enigma1" class="enigma-container">
-        <p><strong>Enigma 1:</strong> Decifre a mensagem em código Morse!</p>
-        <audio controls>
-            <source src="audio_enigma1.mp3" type="audio/mpeg">
-            Seu navegador não suporta o elemento de áudio.
-        </audio>
-        <button class="enigma-button" onclick="showNextEnigma('enigma2')">Próximo Enigma</button>
-    </div>
-
-    <!-- Enigma 2 -->
-    <div id="enigma2" class="enigma-container">
-        <p><strong>Enigma 2:</strong> Manipule a imagem para revelar a palavra oculta!</p>
-        <img src="imagem_enigma2.jpg" alt="Imagem para o Enigma 2" style="width: 100%; max-width: 300px; box-shadow: 0 0 15px #00ff00;">
-        <button class="enigma-button" onclick="showNextEnigma('enigma3')">Próximo Enigma</button>
-    </div>
-
-    <!-- Enigma 3 -->
-    <div id="enigma3" class="enigma-container">
-        <p><strong>Enigma 3:</strong> Ouça com atenção o áudio e descubra a senha!</p>
-        <audio controls>
-            <source src="audio_enigma3.mp3" type="audio/mpeg">
-            Seu navegador não suporta o elemento de áudio.
-        </audio>
-        <button class="enigma-button" onclick="showNextEnigma('final')">Concluir</button>
-    </div>
-
-    <!-- Mensagem final -->
-    <div id="final" class="enigma-container">
-        <p>Parabéns! Você completou todos os enigmas e escapou do laboratório!</p>
-    </div>
-
-    <!-- Rodapé -->
-    <footer>
-        <p>Escape Room by Cientista Vórtex. Boa sorte em sua jornada sombria!</p>
-    </footer>
-
-    <script>
-        // Função para mostrar o próximo enigma
-        function showNextEnigma(id) {
-            document.querySelectorAll('.enigma-container').forEach(function(enigma) {
-                enigma.style.display = 'none';
-            });
-            document.getElementById(id).style.display = 'block';
-        }
-    </script>
-</body>
-</html>
