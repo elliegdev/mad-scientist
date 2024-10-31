@@ -4,87 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escape Room Cientista Maluca</title>
-    <style>
-        /* Estilo Geral */
-        body {
-            background: url('seu_fundo_de_halloween.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #f5f5f5;
-            font-family: 'Courier New', Courier, monospace;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 0 20px;
-        }
-
-        /* Sobreposição sombria */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: -1;
-        }
-
-        /* Títulos e texto */
-        h1, h2 {
-            color: #ff4500;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
-        }
-        p {
-            font-size: 1.2rem;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-        }
-
-        /* Botão de Enigma */
-        .enigma-button {
-            background-color: #8b0000;
-            color: #f5f5f5;
-            border: 2px solid #f5f5f5;
-            padding: 10px 20px;
-            font-size: 1rem;
-            margin: 10px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
-        }
-        .enigma-button:hover {
-            background-color: #ff4500;
-            color: #000;
-        }
-
-        /* Contêiner de Enigmas */
-        .enigma-container {
-            display: none;
-            margin-top: 20px;
-        }
-
-        /* Áudio */
-        audio {
-            margin-top: 20px;
-        }
-
-        /* Rodapé */
-        footer {
-            color: #ff4500;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-            margin-top: 50px;
-            font-size: 0.9rem;
-        }
-    </style>
-    <script>
-        // Função para mostrar o próximo enigma
-        function showNextEnigma(id) {
-            document.getElementById(id).style.display = 'block';
-        }
-    </script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Escape Room Cientista Vórtex</h1>
@@ -94,68 +14,42 @@
     <!-- Botão inicial para começar o Enigma 1 -->
     <button class="enigma-button" onclick="showNextEnigma('enigma1')">Iniciar Enigma 1</button>
 
-    <!-- Enigmas de 1 a 20 -->
+    <!-- Estrutura de Enigmas de 1 a 20 -->
     <!-- Enigma 1 -->
     <div id="enigma1" class="enigma-container">
         <p><strong>Enigma 1:</strong> Decifre a mensagem em código Morse!</p>
         <audio controls>
-            <source src="https://rr1---sn-bg0s7n7d.googlevideo.com/videoplayback?expire=1730403321&ei=mYcjZ92mK6bKvcAPtJ7FuA8&ip=2405%3A4802%3A7a18%3A5140%3A7153%3Aeb95%3A7632%3A1eee&id=o-AJZaOGlZVkCXYKTNJEF5dRPvKVXqzg6E20yQWU-rW8Wn&itag=140&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&bui=AQn3pFSN1nPyTBHopjmrjgJCeO8bXVDJhIzJb2rNsmKM2iNS63IVtYaviGt_QRtKmnDH3bAlr0P-UQFg&vprv=1&mime=audio%2Fmp4&rqh=1&gir=yes&clen=146481&dur=9.009&lmt=1712286287534149&keepalive=yes&fexp=24350590,24350655,24350675,24350705,24350737,51312688,51326932&c=MEDIA_CONNECT_FRONTEND&txp=4532434&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cxpc%2Cbui%2Cvprv%2Cmime%2Crqh%2Cgir%2Cclen%2Cdur%2Clmt&sig=AJfQdSswRQIhAMixr8GVRpB2PbPvF246w_-OB4Edt1-3rGC4ep2Ecw2PAiBRA0qp8iesYaOxctUtGdXhDFS6KQi56tG5cZpsd899pQ%3D%3D&rm=sn-42u-nboze7z&rrc=79,80&req_id=2494afbbdb1aa3ee&cmsv=e&redirect_counter=2&cm2rm=sn-i3bdr7s&cms_redirect=yes&met=1730381729,&mh=yD&mip=2804:7f0:20:20bf:c78d:bfca:bcd:f781&mm=34&mn=sn-bg0s7n7d&ms=ltu&mt=1730380594&mv=u&mvi=1&pl=54&rms=ltu,au&lsparams=met,mh,mip,mm,mn,ms,mv,mvi,pl,rms&lsig=ACJ0pHgwRQIhAMMiKoh7xaNShXQQ85zW83Gt9cfFPkA65pmIBEBWKLE8AiBAZE77fbDIH0BkeHeQF2HfjUwhm83SzXW4a5trVPN6Jw%3D%3D" type="audio/mpeg">
+            <source src="audio_enigma1.mp3" type="audio/mpeg">
             Seu navegador não suporta o elemento de áudio.
         </audio>
-        <input type="text" id="respostaSala1" placeholder="Digite sua resposta">
-            <button onclick="verificarResposta(1)">Enviar Resposta</button>
-            <p id="feedbackSala1"></p>
-        <input type="text" id="respostaSala1" placeholder="Digite sua resposta">
-            <button onclick="verificarResposta(1)">Enviar Resposta</button>
-            <p id="feedbackSala1"></p>
-        </div>
-        </div>
         <button class="enigma-button" onclick="showNextEnigma('enigma2')">Próximo Enigma</button>
     </div>
 
     <!-- Enigma 2 -->
     <div id="enigma2" class="enigma-container">
-        <p><strong>Enigma 2:</strong> Manipule a imagem para revelar a pista oculta!</p>
+        <p><strong>Enigma 2:</strong> Manipule a imagem para revelar a palavra oculta!</p>
         <img src="imagem_enigma2.jpg" alt="Imagem para o Enigma 2" style="width: 100%; max-width: 300px;">
         <button class="enigma-button" onclick="showNextEnigma('enigma3')">Próximo Enigma</button>
     </div>
 
-    <!-- Enigma 3 -->
-    <div id="enigma3" class="enigma-container">
-        <p><strong>Enigma 3:</strong> Resolva o quebra-cabeça para desbloquear a próxima fase!</p>
-        <audio controls>
-            <source src="quebra_cabeca_audio.mp3" type="audio/mpeg">
-            Seu navegador não suporta o elemento de áudio.
-        </audio>
-        <button class="enigma-button" onclick="showNextEnigma('enigma4')">Próximo Enigma</button>
-    </div>
-
-    <!-- Continue a estrutura para os enigmas de 4 a 20 -->
-    <!-- Apenas como exemplo, o código de Enigmas 4 a 19 segue o mesmo padrão -->
-<!-- Enigma 4 -->
-    <div id="enigma3" class="enigma-container">
-        <p><strong>Enigma 4:</strong> Resolva o quebra-cabeça para desbloquear a próxima fase!</p>
-        <audio controls>
-            <source src="quebra_cabeca_audio.mp3" type="audio/mpeg">
-            Seu navegador não suporta o elemento de áudio.
-        </audio>
-        <button class="enigma-button" onclick="showNextEnigma('enigma4')">Próximo Enigma</button>
-    </div>
+    <!-- Continue esta estrutura para os enigmas de 3 a 19 -->
 
     <!-- Enigma 20 -->
     <div id="enigma20" class="enigma-container">
-        <p><strong>Enigma 20:</strong> Resolva o enigma final e escape do laboratório!</p>
+        <p><strong>Enigma 20:</strong> Enigma final! Decifre o código para escapar!</p>
         <audio controls>
-            <source src="enigma_final_audio.mp3" type="audio/mpeg">
+            <source src="audio_enigma20.mp3" type="audio/mpeg">
             Seu navegador não suporta o elemento de áudio.
         </audio>
-        <p>Parabéns! Você completou todos os enigmas!</p>
+        <p>Parabéns! Você completou todos os enigmas e escapou do laboratório!</p>
     </div>
 
     <!-- Rodapé -->
     <footer>
         <p>Escape Room by Cientista Vórtex. Boa sorte em sua jornada sombria!</p>
     </footer>
+
+    <!-- Importando o JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
-
