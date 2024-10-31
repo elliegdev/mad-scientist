@@ -184,5 +184,39 @@
         // Inicializa com o primeiro enigma visível
         document.getElementById("enigma1").style.display = "block";
     </script>
+ <!-- Script -->
+    <script>
+        let currentEnigma = 1;
+        const totalEnigmas = 4; // atualize para o número total de enigmas
+
+        function showEnigma(enigmaNumber) {
+            document.querySelectorAll('.enigma-container').forEach(container => container.style.display = 'none');
+            document.getElementById(`enigma${enigmaNumber}`).style.display = 'block';
+            updateDots(enigmaNumber);
+        }
+
+        function verifyAnswer(enigmaNumber, correctAnswer) {
+            const input = document.getElementById(`input${enigmaNumber}`).value.toUpperCase().trim();
+            if (input === correctAnswer) {
+                if (enigmaNumber < totalEnigmas) {
+                    currentEnigma++;
+                    showEnigma(currentEnigma);
+                } else {
+                    alert('Parabéns! Você resolveu todos os enigmas.');
+                }
+            } else {
+                alert('Resposta incorreta. Tente novamente.');
+            }
+        }
+
+        function updateDots(activeDot) {
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.remove('active');
+                if (index + 1 === activeDot) dot.classList.add('active');
+            });
+        }
+
+        showEnigma(currentEnigma);
+    </script>
 </body>
 </html>
