@@ -24,6 +24,7 @@
             color: #6959CD;
             text-shadow: 0 0 5px #6959CD, 0 0 10px #6959CD, 0 0 15px #6959CD;
         }
+
         p {
             font-size: 1.2rem;
             color: #6959CD;
@@ -60,12 +61,36 @@
             box-shadow: 0 0 15px #6959CD;
         }
 
+        /* Botão Iniciar Enigma */
+        #startButton {
+            background-color: #6959CD; /* Cor do botão */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 0 10px #6959CD;
+            transition: background-color 0.3s;
+        }
+        #startButton:hover {
+            background-color: #5a4da3; /* Cor do botão ao passar o mouse */
+        }
+
         /* Rodapé */
         footer {
             color: #6959CD;
             text-shadow: 0 0 5px #6959CD;
             margin-top: 50px;
             font-size: 0.9rem;
+        }
+
+        /* Estilo para mensagens de finalização */
+        .final-message {
+            color: #ffcc00;
+            font-size: 2rem;
+            margin-top: 20px;
+            display: none; /* Esconde inicialmente */
         }
     </style>
 </head>
@@ -98,7 +123,7 @@
         </audio>
         <input type="text" id="answer1" placeholder="Digite sua resposta" />
         <p id="feedback1" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
-        <button class="enigma-button" onclick="checkAnswer('answer1', 'chave', 'enigma2')">Verificar Resposta</button>
+        <button class="enigma-button" onclick="checkAnswer('answer1', 'chave', 1)">Verificar Resposta</button>
     </div>
 
     <div id="enigma2" class="enigma-container">
@@ -106,22 +131,25 @@
         <img src="https://i.imgur.com/E3vrbXz.jpeg" alt="Imagem para o Enigma 2" style="width: 100%; max-width: 300px; box-shadow: 0 0 15px #6959CD;">
         <input type="text" id="answer2" placeholder="Digite sua resposta" />
         <p id="feedback2" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
-        <button onclick="checkAnswer('answer2', 'para saida', 'enigma3')">Verificar Resposta</button>
+        <button onclick="checkAnswer('answer2', 'para saida', 2)">Verificar Resposta</button>
     </div>
 
     <div id="enigma3" class="enigma-container">
         <p><strong>Enigma 3:</strong> Decifre a mensagem usando cifra de César: "i qerxiv".</p>
         <input type="text" id="answer3" placeholder="Digite sua resposta" />
         <p id="feedback3" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
-        <button onclick="checkAnswer('answer3', 'e manter','enigma4')">Verificar Resposta</button>
+        <button onclick="checkAnswer('answer3', 'e manter', 3)">Verificar Resposta</button>
     </div>
 
     <div id="enigma4" class="enigma-container">
         <p><strong>Enigma 4:</strong> Decifre a mensagem em código binário: 01100001 00100000 01100011 01110010 01101001 01100001 01110100 01101001 01110110 01101001 01100100 01100001 01100100 01100101.</p>
         <input type="text" id="answer4" placeholder="Digite sua resposta" />
         <p id="feedback4" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
-        <button onclick="checkAnswer('answer4', 'a criatividade','enigma5')">Verificar Resposta</button>
+        <button onclick="checkAnswer('answer4', 'a criatividade', 4)">Verificar Resposta</button>
     </div>
+
+    <!-- Mensagens de finalização -->
+    <div id="finalMessage" class="final-message"></div>
 
     <script>
         let timer;
@@ -143,7 +171,9 @@
                 if (timeLeft <= 0) {
                     clearInterval(timer);
                     alert("O tempo acabou! Você não conseguiu escapar.");
-                    // Adicione lógica para o que deve acontecer quando o tempo acabar
+                    // Lógica para Game Over
+                    document.getElementById("finalMessage").textContent = "Game Over!";
+                    document.getElementById("finalMessage").style.display = "block";
                 } else {
                     timeLeft--;
                     updateTimerDisplay();
@@ -166,27 +196,6 @@
             // Mostrar o enigma correspondente
             const currentEnigma = document.getElementById(`enigma${phase}`);
             currentEnigma.style.display = 'block';
-
-            // Atualizar a fase atual
-            currentPhase = phase;
         }
 
-        function checkAnswer(answerId, correctAnswer, nextEnigmaId) {
-            const userAnswer = document.getElementById(answerId).value.trim().toLowerCase();
-            const feedbackId = `feedback${answerId.charAt(answerId.length - 1)}`;
-            if (userAnswer === correctAnswer) {
-                document.getElementById(feedbackId).textContent = "Resposta correta!";
-                // Habilitar fase seguinte
-                const nextPhaseIndicator = document.querySelector(`.phase-indicator:nth-child(${currentPhase + 1})`);
-                if (nextPhaseIndicator) {
-                    nextPhaseIndicator.classList.add('active');
-                }
-                // Navegar para o próximo enigma
-                navigateToPhase(parseInt(answerId.charAt(answerId.length - 1)) + 1);
-            } else {
-                document.getElementById(feedbackId).textContent = "Resposta incorreta. Tente novamente.";
-            }
-        }
-    </script>
-</body>
-</html>
+        function checkAnswer(answerId, correctAnswer, nextPhase)
