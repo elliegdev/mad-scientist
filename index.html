@@ -7,8 +7,8 @@
     <style>
         /* Estilo Geral */
         body {
-            background-color: #000; /* Fundo preto */
-            color: #6959CD; /* Roxo neon */
+            background-color: #000;
+            color: #6959CD;
             font-family: 'Courier New', Courier, monospace;
             text-align: center;
             display: flex;
@@ -18,8 +18,6 @@
             margin: 0;
             padding: 0 20px;
         }
-
-        /* Títulos com efeito neon */
         h1, h2 {
             color: #6959CD;
             text-shadow: 0 0 5px #6959CD, 0 0 10px #6959CD, 0 0 15px #6959CD;
@@ -29,8 +27,6 @@
             color: #6959CD;
             text-shadow: 0 0 5px #6959CD;
         }
-
-        /* Estilo das bolinhas para fases */
         .phase-indicators {
             display: flex;
             justify-content: center;
@@ -42,16 +38,11 @@
             margin: 0 5px;
             border-radius: 50%;
             background-color: #6959CD;
-            cursor: pointer;
             opacity: 0.5;
-            pointer-events: none; /* Desabilita cliques inicialmente */
         }
         .active {
             opacity: 1;
-            pointer-events: auto; /* Habilita cliques apenas para fases ativas */
         }
-
-        /* Contêiner de Enigmas */
         .enigma-container {
             display: none;
             margin-top: 20px;
@@ -59,8 +50,6 @@
             padding: 20px;
             box-shadow: 0 0 15px #6959CD;
         }
-
-        /* Rodapé */
         footer {
             color: #6959CD;
             text-shadow: 0 0 5px #6959CD;
@@ -74,171 +63,86 @@
     <h2>Desvende os Mistérios!</h2>
     <p>Você está preso no laboratório da Dra. Vórtex. Resolva os enigmas para escapar!</p>
 
-    <!-- Indicadores de Fases -->
     <div class="phase-indicators">
-        <div class="phase-indicator active" onclick="navigateToPhase(1)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(2)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(3)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(4)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(5)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(6)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(7)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(8)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(9)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(10)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(11)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(12)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(14)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(15)"></div>
-        
-        <!-- Adicione mais bolinhas conforme necessário -->
+        <div class="phase-indicator active"></div>
+        <div class="phase-indicator"></div>
+        <div class="phase-indicator"></div>
+        <div class="phase-indicator"></div>
     </div>
 
-    <!-- Estrutura de Enigmas de 1 a 3 -->
-    <!-- Enigma 1 -->
-<!-- Enigma 1 -->
-    <div id="enigma1" class="enigma-container">
+    <div id="enigma1" class="enigma-container" style="display: block;">
         <p><strong>Enigma 1:</strong> Decifre a mensagem em código Morse!</p>
         <audio controls>
             <source src="https://abrir.link/bJjYh" type="audio/mpeg">
             Seu navegador não suporta o elemento de áudio.
         </audio>
         <input type="text" id="answer1" placeholder="Digite sua resposta" />
-        <p id="feedback1" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
-        <button class="enigma-button" onclick="checkAnswer('answer1', 'chave', 'enigma2')">Verificar Resposta</button>
-
+        <p id="feedback1" style="color: #ff0000;"></p>
+        <button onclick="checkAnswer(1, 'chave', 2)">Verificar Resposta</button>
     </div>
 
-    <!-- Enigma 2 -->
     <div id="enigma2" class="enigma-container">
         <p><strong>Enigma 2:</strong> Manipule a imagem para revelar a palavra oculta!</p>
-        <img src="https://i.imgur.com/E3vrbXz.jpeg" alt="Imagem para o Enigma 2" style="width: 100%; max-width: 300px; box-shadow: 0 0 15px #6959CD;">
+        <img src="https://i.imgur.com/E3vrbXz.jpeg" alt="Imagem para o Enigma 2" style="width: 100%; max-width: 300px;">
         <input type="text" id="answer2" placeholder="Digite sua resposta" />
-        <p id="feedback2" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
-        <button onclick="checkAnswer('answer2', 'para saida', 'enigma3')">Verificar Resposta</button>
-       
+        <p id="feedback2" style="color: #ff0000;"></p>
+        <button onclick="checkAnswer(2, 'para saida', 3)">Verificar Resposta</button>
     </div>
 
-    
-    <!-- Enigma 3 -->
-  <div id="enigma3" class="enigma-container">
-        <h2>Enigma 3</h2>
-      <p><strong>Enigma 3:<Decifre a mensagem usando cifra de César com deslocamento 4: "i qerxiv".</p>
+    <div id="enigma3" class="enigma-container">
+        <p><strong>Enigma 3:</strong> Decifre a mensagem usando cifra de César com deslocamento 4: "i qerxiv".</p>
         <input type="text" id="answer3" placeholder="Digite sua resposta" />
-        <p id="feedback2" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
-        <button onclick="checkAnswer('answer3', 'e manter','enigma4')">Verificar Resposta</button>
-      
+        <p id="feedback3" style="color: #ff0000;"></p>
+        <button onclick="checkAnswer(3, 'e manter', 4)">Verificar Resposta</button>
     </div>
-    
 
-    <!-- Enigma 4 -->
-  <div id="enigma4" class="enigma-container">
-        <h2>Enigma 4</h2>
-        <p>Decifre a mensagem em codigo binario 01100001 00100000 01100011 01110010 01101001 01100001 01110100 01101001 01110110 01101001 01100100 01100001 01100100 01100101 ".</p>
+    <div id="enigma4" class="enigma-container">
+        <p><strong>Enigma 4:</strong> Decifre a mensagem em código binário: "01100001 00100000 01100011 01110010 01101001 01100001 01110100 01101001 01110110 01101001 01100100 01100001 01100100 01100101".</p>
         <input type="text" id="answer4" placeholder="Digite sua resposta" />
-        <p id="feedback2" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
-        <button onclick="checkAnswer('answer4', 'a criatividade','enigma5')">Verificar</button>
-      
+        <p id="feedback4" style="color: #ff0000;"></p>
+        <button onclick="checkAnswer(4, 'a criatividade', 'final')">Verificar</button>
     </div>
-    <!-- Mensagem final -->
-    
+
     <div id="final" class="enigma-container">
         <p>Parabéns! Você completou todos os enigmas e escapou do laboratório!</p>
     </div>
 
-    <!-- Rodapé -->
     <footer>
         <p>Escape Room by Cientista Vórtex. Boa sorte em sua jornada sombria!</p>
     </footer>
 
     <script>
-        let currentPhase = 1; // Fase inicial
+        let currentPhase = 1;
 
-        // Função para mostrar o próximo enigma e ocultar o atual
-        function showNextEnigma(currentEnigmaId, nextEnigmaId) {
-            document.getElementById(currentEnigmaId).style.display = 'none';
-            document.getElementById(nextEnigmaId).style.display = 'block';
-            updatePhaseIndicators();
-        }
-
-        // Função para verificar a resposta
-        function checkAnswer(inputId, correctAnswer, nextEnigmaId) {
-            const userAnswer = document.getElementById(inputId).value.trim().toLowerCase();
-            const feedbackElement = document.getElementById("feedback" + inputId[inputId.length - 1]);
+        function checkAnswer(enigmaNumber, correctAnswer, nextEnigma) {
+            const userAnswer = document.getElementById(`answer${enigmaNumber}`).value.trim().toLowerCase();
+            const feedbackElement = document.getElementById(`feedback${enigmaNumber}`);
 
             if (userAnswer === correctAnswer) {
                 feedbackElement.textContent = "Resposta correta! Você pode prosseguir.";
-                currentPhase++; // Avança para a próxima fase
-                showNextEnigma(`enigma${currentPhase - 1}`, nextEnigmaId);
-                updatePhaseIndicators();
+                if (nextEnigma === 'final') {
+                    document.getElementById(`enigma${enigmaNumber}`).style.display = 'none';
+                    document.getElementById('final').style.display = 'block';
+                } else {
+                    showNextEnigma(enigmaNumber, nextEnigma);
+                }
             } else {
                 feedbackElement.textContent = "Resposta incorreta. Tente novamente.";
             }
         }
 
-        // Função para atualizar os indicadores de fase
-        function updatePhaseIndicators() {
+        function showNextEnigma(currentEnigma, nextEnigma) {
+            document.getElementById(`enigma${currentEnigma}`).style.display = 'none';
+            document.getElementById(`enigma${nextEnigma}`).style.display = 'block';
+            updatePhaseIndicators(nextEnigma);
+        }
+
+        function updatePhaseIndicators(activePhase) {
             const indicators = document.querySelectorAll('.phase-indicator');
             indicators.forEach((indicator, index) => {
-                if (index < currentPhase) {
-                    indicator.classList.add('active'); // Marca como ativa
-                } else {
-                    indicator.classList.remove('active'); // Remove a marcação
-                }
+                indicator.classList.toggle('active', index + 1 <= activePhase);
             });
         }
-
-        // Função para permitir a navegação apenas para fases já resolvidas
-        function navigateToPhase(phase) {
-            if (phase <= currentPhase) {
-                showEnigma(`enigma${phase}`);
-            }
-        }
-
-        // Função para mostrar o enigma atual e esconder os outros
-        function showEnigma(enigmaId) {
-            document.querySelectorAll('.enigma-container').forEach(function(enigma) {
-                enigma.style.display = 'none'; // Esconde todas as fases
-            });
-            document.getElementById(enigmaId).style.display = 'block'; // Mostra a fase selecionada
-        }
-
-        // Inicializa com o primeiro enigma visível
-        document.getElementById("enigma1").style.display = "block";
-    </script>
- <!-- Script -->
-    <script>
-        let currentEnigma = 1;
-        const totalEnigmas = 15; // atualize para o número total de enigmas
-
-        function showEnigma(enigmaNumber) {
-            document.querySelectorAll('.enigma-container').forEach(container => container.style.display = 'none');
-            document.getElementById(`enigma${enigmaNumber}`).style.display = 'block';
-            updateDots(enigmaNumber);
-        }
-
-        function verifyAnswer(enigmaNumber, correctAnswer) {
-            const input = document.getElementById(`input${enigmaNumber}`).value.toUpperCase().trim();
-            if (input === correctAnswer) {
-                if (enigmaNumber < totalEnigmas) {
-                    currentEnigma++;
-                    showEnigma(currentEnigma);
-                } else {
-                    alert('Parabéns! Você resolveu todos os enigmas.');
-                }
-            } else {
-                alert('Resposta incorreta. Tente novamente.');
-            }
-        }
-
-        function updateDots(activeDot) {
-            document.querySelectorAll('.dot').forEach((dot, index) => {
-                dot.classList.remove('active');
-                if (index + 1 === activeDot) dot.classList.add('active');
-            });
-        }
-
-        showEnigma(currentEnigma);
     </script>
 </body>
 </html>
