@@ -112,9 +112,10 @@
         <div class="phase-indicator" onclick="navigateToPhase(2)"></div>
         <div class="phase-indicator" onclick="navigateToPhase(3)"></div>
         <div class="phase-indicator" onclick="navigateToPhase(4)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(5)"></div>
     </div>
 
-    <!-- Estrutura de Enigmas de 1 a 4 -->
+    <!-- Estrutura de Enigmas de 1 a 15 -->
     <!-- Enigma 1 -->
     <div id="enigma1" class="enigma-container">
         <p><strong>Enigma 1:</strong> Decifre a mensagem em código Morse!</p>
@@ -148,6 +149,13 @@
         <p id="feedback4" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
         <button onclick="checkAnswer('answer4', 'a criatividade', 4)">Verificar Resposta</button>
     </div>
+    
+    <div id="enigma5" class="enigma-container">
+    <p><strong>Enigma 5:</strong> O que faz você questionar, explorar e descobrir novos caminhos na vida??</p>
+    <input type="text" id="answer5" placeholder="Digite sua resposta" />
+    <p id="feedback5" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
+    <button onclick="checkAnswer('answer5', 'curiosidade', 5)">Verificar Resposta</button>
+</div>
 
     <!-- Mensagens de finalização -->
     <div id="finalMessage" class="final-message"></div>
@@ -224,7 +232,7 @@
             if (userAnswer === correctAnswer) {
                 document.getElementById(feedbackId).textContent = "Resposta Correta!";
                 navigateToPhase(++currentPhase); // Avançar para a próxima fase
-                if (currentPhase > 4) {
+                if (currentPhase > 5) {
                     clearInterval(timer);
                     document.getElementById("finalMessage").textContent = "Parabéns! Você escapou antes do tempo!";
                     document.getElementById("finalMessage").style.display = "block";
