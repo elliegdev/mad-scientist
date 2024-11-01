@@ -183,97 +183,130 @@
         <p id="resultadoEnigma6" class="resultado"></p>
     </section>
 
-    <!-- Mensagem de finalização -->
-    <div id="finalMessage" class="final-message"></div>
+    
+    <!-- Quebra-Cabeça de Arrastar e Soltar -->
+    <div id="enigma9" class="enigma-container">
+        <p><strong>Quebra-Cabeça:</strong> Arraste as palavras para o local correto!</p>
+        <div class="puzzle-container">
+            <div class="dropzone" id="dropzone">
+                <p>Solte aqui as palavras!</p>
+            </div>
+            <div class="pieces" id="pieces">
+                <div class="piece" draggable="true" ondragstart="drag(event)">Criatividade</div>
+                <div class="piece" draggable="true" ondragstart="drag(event)">Inovação</div>
+                <div class="piece" draggable="true" ondragstart="drag(event)">Descoberta</div>
+                <div class="piece" draggable="true" ondragstart="drag(event)">Curiosidade</div>
+            </div>
+        </div>
+        <button onclick="checkPuzzle()">Verificar Quebra-Cabeça</button>
+        <p id="puzzleFeedback" class="final-message"></p> <!-- Mensagem de feedback do quebra-cabeça -->
+    </div>
+
+    <!-- Mensagem de Finalização -->
+    <p id="finalMessage" class="final-message"></p>
 
     <footer>
-        <p>&copy; 2024 Escape Room Cientista Vórtex</p>
+        <p>&copy; 2024 Escape Room Cientista Vórtex. Todos os direitos reservados.</p>
     </footer>
 
-   <script>
-        let timer; // Variável para o temporizador
-        let timeLeft = 60 * 60; // 60 minutos em segundos
-        let currentPhase = 1; // Fase atual
+    <script>
+        let currentPhase = 1;
+        let timer;
+        let timeLeft = 3600; // 60 minutos em segundos
 
         function startGame() {
-            document.getElementById('startButton').style.display = 'none'; // Esconder o botão
-            document.getElementById('timer').style.display = 'block'; // Mostrar o timer
-            document.querySelector('.phase-indicators').style.display = 'flex'; // Mostrar os indicadores de fases
-            startTimer(); // Iniciar o temporizador
-            showPhase(currentPhase); // Mostrar a fase inicial
+            document.getElementById('startButton').style.display = 'none';
+            document.getElementById('timer').style.display = 'block';
+            document.querySelector('.phase-indicators').style.display = 'flex';
+            document.getElementById('enigma1').style.display = 'block';
+            startTimer();
         }
 
         function startTimer() {
-            timer = setInterval(function() {
+            timer = setInterval(() => {
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                document.getElementById('timer').innerText = `Tempo Restante: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
                 if (timeLeft <= 0) {
                     clearInterval(timer);
-                    document.getElementById('finalMessage').innerText = "Tempo esgotado! Game Over!";
-                    document.getElementById('finalMessage').style.display = "block"; // Mostrar mensagem de Game Over
-                    endGame(); // Finaliza o jogo
-                } else {
-                    timeLeft--;
-                    document.getElementById('timer').innerText = `Tempo Restante: ${formatTime(timeLeft)}`;
+                    alert('Game Over! O tempo acabou.');
+                    document.getElementById('finalMessage').innerText = 'Você não conseguiu escapar a tempo.';
+                    document.getElementById('finalMessage').style.display = 'block';
                 }
             }, 1000);
         }
 
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const secs = seconds % 60;
-            return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-        }
-
-        function showPhase(phase) {
-            for (let i = 1; i <= 8; i++) {
-                document.getElementById(`enigma${i}`).style.display = i === phase ? 'block' : 'none';
+        function navigateToPhase(phase) {
+            if (phase <= currentPhase) {
+                document.getElementById(`enigma${currentPhase}`).style.display = 'none'; // Esconder o enigma atual
+                currentPhase = phase; // Atualiza a fase atual
+                document.getElementById(`enigma${currentPhase}`).style.display = 'block'; // Mostra o novo enigma
+                updatePhaseIndicators(); // Atualiza os indicadores
             }
-            updateIndicators(phase);
         }
 
-        function updateIndicators(phase) {
+        function updatePhaseIndicators() {
             const indicators = document.querySelectorAll('.phase-indicator');
             indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index < phase);
+                indicator.classList.remove('active');
+                if (index < currentPhase) {
+                    indicator.classList.add('active');
+                }
             });
         }
 
-        function checkAnswer(inputId, correctAnswer, phase) {
-            const userAnswer = document.getElementById(inputId).value.trim().toLowerCase();
-            const feedbackId = `feedback${phase}`;
-            const feedbackElement = document.getElementById(feedbackId);
-            
+        function checkAnswer(answerId, correctAnswer, enigmaNumber) {
+            const userAnswer = document.getElementById(answerId).value.toLowerCase();
+            const feedbackElement = document.getElementById(`feedback${enigmaNumber}`);
             if (userAnswer === correctAnswer) {
-                feedbackElement.style.color = '#00ff00'; // Verde para resposta correta
-                feedbackElement.innerText = "Parabéns! Resposta correta!";
-                currentPhase++; // Avança para a próxima fase
-                if (currentPhase > 8) {
-                    clearInterval(timer); // Para o timer
-                    document.getElementById('finalMessage').innerText = "Parabéns! Você escapou antes do tempo acabar!";
-                    document.getElementById('finalMessage').style.display = "block"; // Mostrar mensagem de parabenização
-                    endGame(); // Finaliza o jogo
+                feedbackElement.innerText = 'Resposta Correta!';
+                feedbackElement.style.color = 'green';
+                if (enigmaNumber < 5) {
+                    navigateToPhase(enigmaNumber + 1);
                 } else {
-                    showPhase(currentPhase); // Mostra a próxima fase
+                    document.getElementById('enigma6').style.display = 'block'; // Mostra o enigma de arrastar e soltar
                 }
             } else {
-                feedbackElement.style.color = '#ff0000'; // Vermelho para resposta errada
-                feedbackElement.innerText = "Resposta incorreta. Tente novamente!";
+                feedbackElement.innerText = 'Resposta Errada. Tente Novamente.';
+                feedbackElement.style.color = 'red';
             }
         }
 
-        function navigateToPhase(phase) {
-            currentPhase = phase;
-            showPhase(currentPhase);
+        // Funções para o quebra-cabeça de arrastar e soltar
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.innerText);
         }
 
-        function endGame() {
-            // Adiciona qualquer lógica de finalização de jogo aqui
-            clearInterval(timer); // Para o timer
-        }
+        const dropzone = document.getElementById("dropzone");
 
-        function simularPostura() {
-            const resultadoElement = document.getElementById('resultadoEnigma6');
-            resultadoElement.innerText = "Postura correta! Cofre aberto!";
-            resultadoElement.style.color = '#00ff00'; // Verde para resposta correta
+        dropzone.addEventListener("dragover", (ev) => {
+            ev.preventDefault();
+        });
+
+        dropzone.addEventListener("drop", (ev) => {
+            const word = ev.dataTransfer.getData("text");
+            const wordElement = document.createElement("div");
+            wordElement.innerText = word;
+            dropzone.appendChild(wordElement);
+            ev.preventDefault();
+        });
+
+        function checkPuzzle() {
+            const wordsInDropzone = Array.from(dropzone.children).map(child => child.innerText);
+            const correctWords = ['Criatividade', 'Inovação', 'Descoberta', 'Curiosidade'];
+            const isComplete = correctWords.every(word => wordsInDropzone.includes(word));
+            
+            const puzzleFeedback = document.getElementById("puzzleFeedback");
+            if (isComplete) {
+                puzzleFeedback.innerText = 'Parabéns! Você completou o quebra-cabeça!';
+                puzzleFeedback.style.color = 'green';
+                clearInterval(timer); // Para o timer
+            } else {
+                puzzleFeedback.innerText = 'Ainda faltam palavras. Tente novamente!';
+                puzzleFeedback.style.color = 'red';
+            }
+            puzzleFeedback.style.display = 'block';
         }
     </script>
 </body>
