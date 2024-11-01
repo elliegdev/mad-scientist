@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escape Room Cientista Maluca</title>
+    <title>Escape Room Cientista Vórtex</title>
     <style>
         /* Estilo Geral */
         body {
@@ -112,10 +112,10 @@
         <div class="phase-indicator" onclick="navigateToPhase(2)"></div>
         <div class="phase-indicator" onclick="navigateToPhase(3)"></div>
         <div class="phase-indicator" onclick="navigateToPhase(4)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(5)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(5)"></div> <!-- Indicador para Enigma 5 -->
     </div>
 
-    <!-- Estrutura de Enigmas de 1 a 15 -->
+    <!-- Estrutura de Enigmas de 1 a 5 -->
     <!-- Enigma 1 -->
     <div id="enigma1" class="enigma-container">
         <p><strong>Enigma 1:</strong> Decifre a mensagem em código Morse!</p>
@@ -130,72 +130,68 @@
 
     <div id="enigma2" class="enigma-container">
         <p><strong>Enigma 2:</strong> Manipule a imagem para revelar a palavra oculta!</p>
-        <img src="https://i.imgur.com/E3vrbXz.jpeg" alt="Imagem para o Enigma 2" style="width: 100%; max-width: 300px; box-shadow: 0 0 15px #6959CD;">
+        <img src="https://i.imgur.com/E3vrbXz.jpeg" alt="Imagem para o Enigma 2" style="width: 100%; max-width: 300px; box-shadow: 0 0 10px #6959CD;" />
         <input type="text" id="answer2" placeholder="Digite sua resposta" />
         <p id="feedback2" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
-        <button onclick="checkAnswer('answer2', 'para saida', 2)">Verificar Resposta</button>
+        <button class="enigma-button" onclick="checkAnswer('answer2', 'ciência', 2)">Verificar Resposta</button>
     </div>
 
     <div id="enigma3" class="enigma-container">
-        <p><strong>Enigma 3:</strong> Decifre a mensagem usando cifra de César: "i qerxiv".</p>
+        <p><strong>Enigma 3:</strong> Complete o labirinto para encontrar a solução!</p>
+        <img src="https://i.imgur.com/hOX83F3.png" alt="Labirinto" style="width: 100%; max-width: 300px; box-shadow: 0 0 10px #6959CD;" />
         <input type="text" id="answer3" placeholder="Digite sua resposta" />
         <p id="feedback3" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
-        <button onclick="checkAnswer('answer3', 'e manter', 3)">Verificar Resposta</button>
+        <button class="enigma-button" onclick="checkAnswer('answer3', 'solução', 3)">Verificar Resposta</button>
     </div>
 
     <div id="enigma4" class="enigma-container">
-        <p><strong>Enigma 4:</strong> Decifre a mensagem em código binário: 01100001 00100000 01100011 01110010 01101001 01100001 01110100 01101001 01110110 01101001 01100100 01100001 01100100 01100101.</p>
+        <p><strong>Enigma 4:</strong> Resolva este quebra-cabeça!</p>
         <input type="text" id="answer4" placeholder="Digite sua resposta" />
         <p id="feedback4" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
-        <button onclick="checkAnswer('answer4', 'a criatividade', 4)">Verificar Resposta</button>
+        <button class="enigma-button" onclick="checkAnswer('answer4', 'quebra-cabeça', 4)">Verificar Resposta</button>
     </div>
-    
-    <div id="enigma5" class="enigma-container">
-    <p><strong>Enigma 5:</strong> O que faz você questionar, explorar e descobrir novos caminhos na vida??</p>
-    <input type="text" id="answer5" placeholder="Digite sua resposta" />
-    <p id="feedback5" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
-    <button onclick="checkAnswer('answer5', 'curiosidade', 5)">Verificar Resposta</button>
-</div>
 
-    <!-- Mensagens de finalização -->
+    <!-- Enigma 5 -->
+    <div id="enigma5" class="enigma-container">
+        <p><strong>Enigma 5:</strong> O que é algo que você pode quebrar, mas nunca toca?</p>
+        <input type="text" id="answer5" placeholder="Digite sua resposta" />
+        <p id="feedback5" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
+        <button class="enigma-button" onclick="checkAnswer('answer5', 'promessa', 5)">Verificar Resposta</button>
+    </div>
+
+    <!-- Mensagem de finalização -->
     <div id="finalMessage" class="final-message"></div>
 
+    <footer>
+        <p>&copy; 2024 Escape Room Cientista Vórtex</p>
+    </footer>
+
     <script>
-        let timer;
-        let timeLeft = 3600; // 60 minutos em segundos
+        let timer; // Variável para o temporizador
+        let timeLeft = 60 * 60; // 60 minutos em segundos
         let currentPhase = 1; // Fase atual
-        let gameStarted = false; // Controle para verificar se o jogo começou
 
         function startGame() {
-            if (!gameStarted) {
-                gameStarted = true;
-                startTimer();
-                document.getElementById("timer").style.display = "block"; // Mostrar o timer
-                document.querySelector(".phase-indicators").style.display = "flex"; // Mostrar os indicadores de fase
-                navigateToPhase(currentPhase); // Ir para a fase atual
-                document.getElementById("startButton").style.display = "none"; // Ocultar botão de iniciar
-            }
+            document.getElementById('startButton').style.display = 'none'; // Esconder botão de iniciar
+            document.querySelector('.phase-indicators').style.display = 'flex'; // Exibir indicadores de fase
+            document.getElementById('timer').style.display = 'block'; // Mostrar timer
+            startTimer(); // Iniciar temporizador
+            navigateToPhase(currentPhase); // Navegar para a fase inicial
         }
 
         function startTimer() {
-            timer = setInterval(() => {
+            timer = setInterval(function () {
                 if (timeLeft <= 0) {
                     clearInterval(timer);
-                    alert("O tempo acabou! Você não conseguiu escapar.");
-                    // Lógica para Game Over
-                    document.getElementById("finalMessage").textContent = "Game Over!";
+                    document.getElementById("finalMessage").textContent = "Game Over! Você não escapou a tempo.";
                     document.getElementById("finalMessage").style.display = "block";
-                } else {
-                    timeLeft--;
-                    updateTimerDisplay();
+                    return;
                 }
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                document.getElementById('timer').textContent = `Tempo Restante: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
             }, 1000);
-        }
-
-        function updateTimerDisplay() {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
-            document.getElementById("timer").textContent = `Tempo Restante: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
         }
 
         function navigateToPhase(phase) {
@@ -232,7 +228,7 @@
             if (userAnswer === correctAnswer) {
                 document.getElementById(feedbackId).textContent = "Resposta Correta!";
                 navigateToPhase(++currentPhase); // Avançar para a próxima fase
-                if (currentPhase > 5) {
+                if (currentPhase > 5) { // Mudar para 5 se você adicionar mais enigmas
                     clearInterval(timer);
                     document.getElementById("finalMessage").textContent = "Parabéns! Você escapou antes do tempo!";
                     document.getElementById("finalMessage").style.display = "block";
