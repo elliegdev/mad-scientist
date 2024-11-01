@@ -158,9 +158,16 @@
         <p id="feedback5" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
         <button class="enigma-button" onclick="checkAnswer('answer5', 'curiosidade', 5)">Verificar Resposta</button>
     </div>
-
+    
+  <!-- Enigma 6 -->
+    <div id="enigma6" class="enigma-container">
+        <p><strong>Enigma 5:</strong> O que pode brilhar, iluminar e precisa de combustível ou fósforos para começar??</p>
+        <input type="text" id="answer6" placeholder="Digite sua resposta" />
+        <p id="feedback5" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
+        <button class="enigma-button" onclick="checkAnswer('answer6', 'acesa', 5)">Verificar Resposta</button>
+    </div>
   
-    <!-- Enigma 6: Cofre com Sensor de Movimento -->
+    <!-- Enigma 7: Cofre com Sensor de Movimento -->
     <section id="enigma6" class="enigma-container">
         <h2>Enigma 6: Cofre com Sensor de Movimento</h2>
         <p>Encontre a postura correta para abrir o cofre e liberar a pista.</p>
@@ -175,90 +182,90 @@
         <p>&copy; 2024 Escape Room Cientista Vórtex</p>
     </footer>
 
-    <script>
+   <script>
         let timer; // Variável para o temporizador
         let timeLeft = 60 * 60; // 60 minutos em segundos
         let currentPhase = 1; // Fase atual
 
         function startGame() {
-            document.getElementById('startButton').style.display = 'none'; // Esconder botão de iniciar
-            document.querySelector('.phase-indicators').style.display = 'flex'; // Exibir indicadores de fase
-            document.getElementById('timer').style.display = 'block'; // Mostrar timer
-            startTimer(); // Iniciar temporizador
-            navigateToPhase(currentPhase); // Navegar para a fase inicial
+            document.getElementById('startButton').style.display = 'none'; // Esconder o botão
+            document.getElementById('timer').style.display = 'block'; // Mostrar o timer
+            document.querySelector('.phase-indicators').style.display = 'flex'; // Mostrar os indicadores de fases
+            startTimer(); // Iniciar o temporizador
+            showPhase(currentPhase); // Mostrar a fase inicial
         }
 
         function startTimer() {
-            timer = setInterval(function () {
+            timer = setInterval(function() {
                 if (timeLeft <= 0) {
                     clearInterval(timer);
-                    document.getElementById("finalMessage").textContent = "Game Over! Você não escapou a tempo.";
-                    document.getElementById("finalMessage").style.display = "block";
-                    return;
+                    document.getElementById('finalMessage').innerText = "Tempo esgotado! Game Over!";
+                    document.getElementById('finalMessage').style.display = "block"; // Mostrar mensagem de Game Over
+                    endGame(); // Finaliza o jogo
+                } else {
+                    timeLeft--;
+                    document.getElementById('timer').innerText = `Tempo Restante: ${formatTime(timeLeft)}`;
                 }
-                timeLeft--;
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                document.getElementById('timer').textContent = `Tempo Restante: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
             }, 1000);
         }
 
-        function navigateToPhase(phase) {
-            // Ocultar todos os enigmas
-            const enigmas = document.querySelectorAll('.enigma-container');
-            enigmas.forEach((enigma) => enigma.style.display = 'none');
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
 
-            // Exibir o enigma da fase atual
-            const currentEnigma = document.getElementById(`enigma${phase}`);
-            if (currentEnigma) {
-                currentEnigma.style.display = 'block';
+        function showPhase(phase) {
+            for (let i = 1; i <= 6; i++) {
+                document.getElementById(`enigma${i}`).style.display = i === phase ? 'block' : 'none';
             }
+            updateIndicators(phase);
+        }
 
-            // Atualizar indicadores de fase
+        function updateIndicators(phase) {
             const indicators = document.querySelectorAll('.phase-indicator');
             indicators.forEach((indicator, index) => {
-                if (index < phase) {
-                    indicator.classList.add('active'); // Fase já concluída
-                } else {
-                    indicator.classList.remove('active'); // Fase futura
-                }
+                indicator.classList.toggle('active', index < phase);
             });
+        }
 
-            // Bloquear a fase futura
-            if (phase < indicators.length) {
-                indicators[phase].style.pointerEvents = 'none'; // Desabilita cliques para fases futuras
+        function checkAnswer(inputId, correctAnswer, phase) {
+            const userAnswer = document.getElementById(inputId).value.trim().toLowerCase();
+            const feedbackId = `feedback${phase}`;
+            const feedbackElement = document.getElementById(feedbackId);
+            
+            if (userAnswer === correctAnswer) {
+                feedbackElement.style.color = '#00ff00'; // Verde para resposta correta
+                feedbackElement.innerText = "Parabéns! Resposta correta!";
+                currentPhase++; // Avança para a próxima fase
+                if (currentPhase > 6) {
+                    clearInterval(timer); // Para o timer
+                    document.getElementById('finalMessage').innerText = "Parabéns! Você escapou antes do tempo acabar!";
+                    document.getElementById('finalMessage').style.display = "block"; // Mostrar mensagem de parabenização
+                    endGame(); // Finaliza o jogo
+                } else {
+                    showPhase(currentPhase); // Mostra a próxima fase
+                }
+            } else {
+                feedbackElement.style.color = '#ff0000'; // Vermelho para resposta errada
+                feedbackElement.innerText = "Resposta incorreta. Tente novamente!";
             }
         }
 
-        function checkAnswer(answerId, correctAnswer, phase) {
-            const userAnswer = document.getElementById(answerId).value.trim().toLowerCase();
-            const feedbackId = `feedback${phase}`;
+        function navigateToPhase(phase) {
+            currentPhase = phase;
+            showPhase(currentPhase);
+        }
 
-            if (userAnswer === correctAnswer) {
-                document.getElementById(feedbackId).textContent = "Resposta Correta!";
-                navigateToPhase(++currentPhase); // Avançar para a próxima fase
-                if (currentPhase > 6) { // Mudar para 6 se você adicionar mais enigmas
-                    clearInterval(timer);
-                    document.getElementById("finalMessage").textContent = "Parabéns! Você escapou antes do tempo!";
-                    document.getElementById("finalMessage").style.display = "block";
-                }
-            } else {
-                document.getElementById(feedbackId).textContent = "Resposta Incorreta. Tente novamente!";
-            }
+        function endGame() {
+            // Adiciona qualquer lógica de finalização de jogo aqui
+            clearInterval(timer); // Para o timer
         }
 
         function simularPostura() {
-            const respostaCorreta = "certa"; // Defina aqui a postura correta
-            const usuarioPostura = prompt("Digite sua postura (ex: certa ou errada):").toLowerCase(); // Solicita ao usuário para digitar a postura
-
-            const resultadoElement = document.getElementById("resultadoEnigma6");
-
-            if (usuarioPostura === respostaCorreta) {
-                resultadoElement.textContent = "Postura Correta! Cofre aberto!";
-                navigateToPhase(++currentPhase); // Avança para a próxima fase
-            } else {
-                resultadoElement.textContent = "Postura Incorreta. Tente novamente!";
-            }
+            const resultadoElement = document.getElementById('resultadoEnigma6');
+            resultadoElement.innerText = "Postura correta! Cofre aberto!";
+            resultadoElement.style.color = '#00ff00'; // Verde para resposta correta
         }
     </script>
 </body>
