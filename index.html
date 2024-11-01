@@ -235,16 +235,16 @@
     <button onclick="checkAnswer('answer14', 'dados', 14)">Verificar Resposta</button>
 </div>
     
-  <!-- Enigma 15: Cofre com Sensor de Movimento -->
+ <!-- Enigma 15: Cofre com Sensor de Movimento -->
 <section id="enigma15" class="enigma-container">
     <h2>Enigma 15: Cofre com Sensor de Movimento</h2>
     <p>Encontre a postura correta para abrir o cofre e liberar a porta.</p>
     <input type="text" id="answer15" placeholder="Digite sua resposta" />
     <button onclick="checkAnswer('answer15', 'certo', 15)">Verificar Resposta</button>
-    <p id="resultadoEnigma15" class="resultado"></p>
+    <p id="feedback15" class="resultado"></p> <!-- Corrigido para o ID correto -->
 </section>
 
-    <script>
+<script>
     let currentPhase = 1; // Inicializa a fase atual
     let timer; // Timer para o jogo
     let totalTime = 60 * 60; // 1 hora em segundos
@@ -295,11 +295,11 @@
                 indicator.classList.add("active"); // Adiciona a classe ativa para fases completadas
             }
         });
-   }
+    }
 
     function checkAnswer(inputId, correctAnswer, phase) {
         const answer = document.getElementById(inputId).value.trim().toLowerCase();
-        const resultElement = document.getElementById(`feedback${phase}`);
+        const resultElement = document.getElementById(`feedback${phase}`); // ID correto para feedback
 
         if (answer === correctAnswer.toLowerCase()) {
             resultElement.textContent = "Correto! Você liberou a próxima pista.";
