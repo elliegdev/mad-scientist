@@ -235,16 +235,15 @@
     <button onclick="checkAnswer('answer14', 'dados', 14)">Verificar Resposta</button>
 </div>
     
-    <!-- Enigma 15: Cofre com Sensor de Movimento -->
-    <section id="enigma15" class="enigma-container">
-        <h2>Enigma 15: Cofre com Sensor de Movimento</h2>
-        <p>Encontre a postura correta para abrir o cofre e liberar a pista.</p>
-        <input type="text" id="answer15" placeholder="Digite sua resposta" />
-        <button onclick="checkAnswer('answer14', 'certo', 14)">Verificar Resposta</button>
-        <button onclick="simularPostura()">Verificar Postura</button>
-        <p id="resultadoEnigma15" class="resultado"></p>
-    </section>
-
+  <!-- Enigma 15: Cofre com Sensor de Movimento -->
+<section id="enigma15" class="enigma-container">
+    <h2>Enigma 15: Cofre com Sensor de Movimento</h2>
+    <p>Encontre a postura correta para abrir o cofre e liberar a pista.</p>
+    <input type="text" id="answer15" placeholder="Digite sua resposta" />
+    <button onclick="checkAnswer('answer15', 'certo', 15)">Verificar Resposta</button>
+    <button onclick="simularPostura()">Verificar Postura</button>
+    <p id="resultadoEnigma15" class="resultado"></p>
+</section>
 
     <!-- Mensagem de Finalização -->
     <p id="finalMessage" class="final-message"></p>
@@ -252,6 +251,31 @@
     <footer>
         <p>&copy; 2024 Escape Room Cientista Vórtex. Todos os direitos reservados.</p>
     </footer>
+    <script>
+function checkAnswer(inputId, correctAnswer, enigmaNumber) {
+    const answer = document.getElementById(inputId).value.trim().toLowerCase();
+    const resultElement = document.getElementById(`resultadoEnigma${enigmaNumber}`);
+
+    if (answer === correctAnswer) {
+        resultElement.textContent = "Correto! Você liberou a próxima pista.";
+        document.getElementById(`enigma${enigmaNumber + 1}`).style.display = "block";
+    } else {
+        resultElement.textContent = "Incorreto. Tente novamente.";
+    }
+}
+
+// Função para simular a postura e verificar se é correta
+function simularPostura() {
+    const resultElement = document.getElementById("resultadoEnigma15");
+    const posturaCorreta = true; // Suponha que a postura está correta (você pode ajustar a lógica aqui)
+
+    if (posturaCorreta) {
+        resultElement.textContent = "Postura correta! O cofre está aberto.";
+        document.getElementById("enigma16").style.display = "block"; // Exibe o próximo enigma
+    } else {
+        resultElement.textContent = "Postura incorreta. Tente novamente.";
+    }
+}
 <script>
     let currentPhase = 1; // Inicializa a fase atual
     let timer; // Timer para o jogo
