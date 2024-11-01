@@ -295,7 +295,7 @@
                 indicator.classList.add("active"); // Adiciona a classe ativa para fases completadas
             }
         });
-    }
+   }
 
     function checkAnswer(inputId, correctAnswer, phase) {
         const answer = document.getElementById(inputId).value.trim().toLowerCase();
@@ -303,11 +303,11 @@
 
         if (answer === correctAnswer.toLowerCase()) {
             resultElement.textContent = "Correto! Você liberou a próxima pista.";
-            currentPhase++; // Avança para a próxima fase
-            if (currentPhase <= 15) {
-                showPhase(currentPhase); // Mostra o próximo enigma
+            if (phase === 15) { // Verifica se é a última fase
+                finalizarEscapeRoom(); // Finaliza o jogo se a fase 15 for concluída
             } else {
-                finalizarEscapeRoom(); // Se todas as fases foram completadas
+                currentPhase++; // Avança para a próxima fase
+                showPhase(currentPhase); // Mostra o próximo enigma
             }
         } else {
             resultElement.textContent = "Incorreto. Tente novamente.";
@@ -318,6 +318,7 @@
     function finalizarEscapeRoom() {
         clearInterval(timer); // Para o timer
         document.getElementById("finalMessage").style.display = "block"; // Exibe a mensagem final
+        document.getElementById("finalMessage").textContent = "Parabéns! Você completou o escape room!"; // Mensagem de parabéns
     }
 </script>
 </body>
