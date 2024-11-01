@@ -112,7 +112,8 @@
         <div class="phase-indicator" onclick="navigateToPhase(2)"></div>
         <div class="phase-indicator" onclick="navigateToPhase(3)"></div>
         <div class="phase-indicator" onclick="navigateToPhase(4)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(5)"></div> <!-- Indicador para Enigma 5 -->
+        <div class="phase-indicator" onclick="navigateToPhase(5)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(5)"></div><!-- Indicador para Enigma 5 -->
     </div>
 
     <!-- Estrutura de Enigmas de 1 a 5 -->
@@ -158,6 +159,15 @@
         <p id="feedback5" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
         <button class="enigma-button" onclick="checkAnswer('answer5', 'promessa', 5)">Verificar Resposta</button>
     </div>
+
+  
+    <!-- Enigma 6: Cofre com Sensor de Movimento -->
+    <section id="enigma6" class="enigma-container">
+        <h2>Enigma 6: Cofre com Sensor de Movimento</h2>
+        <p>Encontre a postura correta para abrir o cofre e liberar a pista.</p>
+        <button onclick="simularPostura()">Verificar Postura</button>
+        <p id="resultadoEnigma6" class="resultado"></p>
+    </section>
 
     <!-- Mensagem de finalização -->
     <div id="finalMessage" class="final-message"></div>
@@ -228,13 +238,27 @@
             if (userAnswer === correctAnswer) {
                 document.getElementById(feedbackId).textContent = "Resposta Correta!";
                 navigateToPhase(++currentPhase); // Avançar para a próxima fase
-                if (currentPhase > 5) { // Mudar para 5 se você adicionar mais enigmas
+                if (currentPhase > 6) { // Mudar para 6 se você adicionar mais enigmas
                     clearInterval(timer);
                     document.getElementById("finalMessage").textContent = "Parabéns! Você escapou antes do tempo!";
                     document.getElementById("finalMessage").style.display = "block";
                 }
             } else {
                 document.getElementById(feedbackId).textContent = "Resposta Incorreta. Tente novamente!";
+            }
+        }
+
+        function simularPostura() {
+            const respostaCorreta = "certa"; // Defina aqui a postura correta
+            const usuarioPostura = prompt("Digite sua postura (ex: certa ou errada):").toLowerCase(); // Solicita ao usuário para digitar a postura
+
+            const resultadoElement = document.getElementById("resultadoEnigma6");
+
+            if (usuarioPostura === respostaCorreta) {
+                resultadoElement.textContent = "Postura Correta! Cofre aberto!";
+                navigateToPhase(++currentPhase); // Avança para a próxima fase
+            } else {
+                resultadoElement.textContent = "Postura Incorreta. Tente novamente!";
             }
         }
     </script>
