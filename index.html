@@ -72,6 +72,7 @@
             cursor: pointer;
             box-shadow: 0 0 10px #6959CD;
             transition: background-color 0.3s;
+            margin: 20px auto; /* Centraliza o botão */
         }
         #startButton:hover {
             background-color: #5a4da3; /* Cor do botão ao passar o mouse */
@@ -99,11 +100,11 @@
     <h2>Desvende os Mistérios!</h2>
     <p>Você está preso no laboratório da Dra. Vórtex. Resolva os enigmas para escapar!</p>
 
-    <!-- Timer -->
-    <h2 id="timer">Tempo Restante: 60:00</h2>
-
     <!-- Botão Iniciar Enigma -->
-    <button id="startButton" onclick="startGame()">Iniciar Enigma</button>
+    <button id="startButton" onclick="startGame()">Clique para Iniciar</button>
+
+    <!-- Timer -->
+    <h2 id="timer" style="display: none;">Tempo Restante: 60:00</h2>
 
     <!-- Indicadores de Fases -->
     <div class="phase-indicators">
@@ -161,6 +162,7 @@
             if (!gameStarted) {
                 gameStarted = true;
                 startTimer();
+                document.getElementById("timer").style.display = "block"; // Mostrar o timer
                 navigateToPhase(currentPhase);
                 document.getElementById("startButton").style.display = "none"; // Ocultar botão de iniciar
             }
@@ -188,14 +190,4 @@
         }
 
         function navigateToPhase(phase) {
-            // Ocultar todos os enigmas
-            const enigmas = document.querySelectorAll('.enigma-container');
-            enigmas.forEach(enigma => {
-                enigma.style.display = 'none';
-            });
-            // Mostrar o enigma correspondente
-            const currentEnigma = document.getElementById(`enigma${phase}`);
-            currentEnigma.style.display = 'block';
-        }
-
-        function checkAnswer(answerId, correctAnswer, nextPhase)
+            // Ocultar
