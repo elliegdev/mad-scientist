@@ -31,9 +31,26 @@
             text-shadow: 0 0 5px #6959CD;
         }
 
-        /* Estilo das bolinhas para fases */
+        /* Estilo do botão Iniciar Enigma */
+        #startButton {
+            background-color: #6959CD; /* Cor do botão */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 0 10px #6959CD;
+            transition: background-color 0.3s;
+            margin: 20px auto; /* Centraliza o botão */
+        }
+        #startButton:hover {
+            background-color: #5a4da3; /* Cor do botão ao passar o mouse */
+        }
+
+        /* Indicadores de Fases */
         .phase-indicators {
-            display: flex;
+            display: none; /* Esconde as fases inicialmente */
             justify-content: center;
             margin-bottom: 20px;
         }
@@ -54,28 +71,11 @@
 
         /* Contêiner de Enigmas */
         .enigma-container {
-            display: none;
+            display: none; /* Esconde os enigmas inicialmente */
             margin-top: 20px;
             border: 1px solid #6959CD;
             padding: 20px;
             box-shadow: 0 0 15px #6959CD;
-        }
-
-        /* Botão Iniciar Enigma */
-        #startButton {
-            background-color: #6959CD; /* Cor do botão */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            box-shadow: 0 0 10px #6959CD;
-            transition: background-color 0.3s;
-            margin: 20px auto; /* Centraliza o botão */
-        }
-        #startButton:hover {
-            background-color: #5a4da3; /* Cor do botão ao passar o mouse */
         }
 
         /* Rodapé */
@@ -163,7 +163,8 @@
                 gameStarted = true;
                 startTimer();
                 document.getElementById("timer").style.display = "block"; // Mostrar o timer
-                navigateToPhase(currentPhase);
+                document.querySelector(".phase-indicators").style.display = "flex"; // Mostrar os indicadores de fase
+                navigateToPhase(currentPhase); // Ir para a fase atual
                 document.getElementById("startButton").style.display = "none"; // Ocultar botão de iniciar
             }
         }
@@ -190,4 +191,48 @@
         }
 
         function navigateToPhase(phase) {
-            // Ocultar
+            // Ocultar todos os enigmas
+            const enigmas = document.querySelectorAll('.enigma-container');
+            enigmas.forEach((enigma) => enigma.style.display = 'none');
+
+            // Exibir o enigma da fase atual
+            const currentEnigma = document.getElementById(`enigma${phase}`);
+            if (currentEnigma) {
+                currentEnigma.style.display = 'block';
+            }
+
+            // Atualizar indicadores de fase
+            const indicators = document.querySelectorAll('.phase-indicator');
+            indicators.forEach((indicator, index) => {
+                if (index < phase) {
+                    indicator.classList.add('active'); // Fase já concluída
+                } else {
+                    indicator.classList.remove('active'); // Fase futura
+                }
+            });
+
+            // Bloquear a fase futura
+            if (phase < indicators.length) {
+                indicators[phase].style.pointerEvents = 'none'; // Desabilita cliques para fases futuras
+            }
+        }
+
+        function checkAnswer(answerId, correctAnswer, phase) {
+            const userAnswer = document.getElementById(answerId).value.trim().toLowerCase();
+            const feedbackId = `feedback${phase}`;
+
+            if (userAnswer === correctAnswer) {
+                document.getElementById(feedbackId).textContent = "Resposta Correta!";
+                navigateToPhase(++currentPhase); // Avançar para a próxima fase
+                if (currentPhase > 4) {
+                    clearInterval(timer);
+                    document.getElementById("finalMessage").textContent = "Parabéns! Você escapou antes do tempo!";
+                    document.getElementById("finalMessage").style.display = "block";
+                }
+            } else {
+                document.getElementById(feedbackId).textContent = "Resposta Incorreta. Tente novamente!";
+            }
+        }
+    </script>
+</body>
+</html>
