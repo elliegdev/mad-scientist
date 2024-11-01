@@ -245,189 +245,81 @@
     <p id="resultadoEnigma15" class="resultado"></p>
 </section>
 
- 
-<script>
-function checkFinalAnswer(inputId, correctAnswer) {
-    const answer = document.getElementById(inputId).value.trim().toLowerCase();
-    const resultElement = document.getElementById("resultadoEnigma20");
-
-    if (answer === correctAnswer) {
-        finalizarEscapeRoom();
-    } else {
-        resultElement.textContent = "Incorreto. Tente novamente.";
-    }
-}
-
-// Função para exibir a tela de parabéns e iniciar a animação de confetes
-function finalizarEscapeRoom() {
-    document.getElementById("parabens").style.display = "flex";
-    gerarConfetes();
-}
-
-// Função para gerar confetes na tela
-function gerarConfetes() {
-    const confettiContainer = document.getElementById("confetti");
-
-    for (let i = 0; i < 100; i++) {
-        const confettiPiece = document.createElement("div");
-        confettiPiece.classList.add("confetti-piece");
-        confettiPiece.style.left = `${Math.random() * 100}%`;
-        confettiPiece.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-        confettiPiece.style.animationDelay = `${Math.random() * 2}s`;
-        confettiContainer.appendChild(confettiPiece);
-    }
-}
-</script>
-
-    <footer>
-        <p>&copy; 2024 Escape Room Cientista Vórtex. Todos os direitos reservados.</p>
-    </footer>
     <script>
-function checkAnswer(inputId, correctAnswer, enigmaNumber) {
-    const answer = document.getElementById(inputId).value.trim().toLowerCase();
-    const resultElement = document.getElementById(`resultadoEnigma${enigmaNumber}`);
+        let currentPhase = 1; // Inicializa a fase atual
+        let timer; // Timer para o jogo
+        let totalTime = 60 * 60; // 1 hora em segundos
 
-    if (answer === correctAnswer) {
-        resultElement.textContent = "Correto! Você liberou a próxima pista.";
-        document.getElementById(`enigma${enigmaNumber + 1}`).style.display = "block";
-    } else {
-        resultElement.textContent = "Incorreto. Tente novamente.";
-    }
-}
-
-// Função para simular a postura e verificar se é correta
-function simularPostura() {
-    const resultElement = document.getElementById("resultadoEnigma15");
-    const posturaCorreta = true; // Suponha que a postura está correta (você pode ajustar a lógica aqui)
-
-    if (posturaCorreta) {
-        resultElement.textContent = "Postura correta! O cofre está aberto.";
-        document.getElementById("enigma16").style.display = "block"; // Exibe o próximo enigma
-    } else {
-        resultElement.textContent = "Postura incorreta. Tente novamente.";
-    }
-}
-<script>
-    let currentPhase = 1; // Inicializa a fase atual
-    let timer; // Timer para o jogo
-    let totalTime = 60 * 60; // 1 hora em segundos
-
-    function startGame() {
-        document.getElementById("startButton").style.display = "none"; // Esconde o botão de início
-        document.getElementById("timer").style.display = "block"; // Mostra o timer
-        startTimer(); // Inicia o timer
-        showPhase(currentPhase); // Mostra a fase inicial
-        document.querySelector(".phase-indicators").style.display = "flex"; // Exibe os indicadores de fase
-    }
-
-    function startTimer() {
-        const timerElement = document.getElementById("timer");
-        timer = setInterval(() => {
-            if (totalTime <= 0) {
-                clearInterval(timer);
-                alert("Tempo esgotado! Você não conseguiu escapar.");
-                return;
-            }
-            totalTime--;
-            const minutes = Math.floor(totalTime / 60);
-            const seconds = totalTime % 60;
-            timerElement.textContent = `Tempo Restante: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-        }, 1000);
-    }
-
-    function showPhase(phase) {
-        document.querySelectorAll(".enigma-container").forEach(container => {
-            container.style.display = "none"; // Esconde todos os enigmas
-        });
-        document.getElementById(`enigma${phase}`).style.display = "block"; // Mostra o enigma da fase atual
-        updatePhaseIndicators(); // Atualiza os indicadores de fase
-    }
-
-    function navigateToPhase(phase) {
-        if (phase <= currentPhase) {
-            showPhase(phase); // Mostra a fase selecionada
+        function startGame() {
+            document.getElementById("startButton").style.display = "none"; // Esconde o botão de início
+            document.getElementById("timer").style.display = "block"; // Mostra o timer
+            startTimer(); // Inicia o timer
+            showPhase(currentPhase); // Mostra a fase inicial
+            document.querySelector(".phase-indicators").style.display = "flex"; // Exibe os indicadores de fase
         }
-    }
 
-    function updatePhaseIndicators() {
-        const indicators = document.querySelectorAll(".phase-indicator");
-        indicators.forEach((indicator, index) => {
-            indicator.classList.remove("active"); // Remove a classe ativa de todos
-            if (index < currentPhase) {
-                indicator.classList.add("active"); // Adiciona a classe ativa para fases completadas
-            }
-        });
-    }
+        function startTimer() {
+            const timerElement = document.getElementById("timer");
+            timer = setInterval(() => {
+                if (totalTime <= 0) {
+                    clearInterval(timer);
+                    alert("Tempo esgotado! Você não conseguiu escapar.");
+                    return;
+                }
+                totalTime--;
+                const minutes = Math.floor(totalTime / 60);
+                const seconds = totalTime % 60;
+                timerElement.textContent = `Tempo Restante: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            }, 1000);
+        }
 
-    function checkAnswer(answerId, correctAnswer, phase) {
-        const userAnswer = document.getElementById(answerId).value.trim().toLowerCase(); // Obtém a resposta do usuário
-        const feedbackElement = document.getElementById(`feedback${phase}`);
-
-        if (userAnswer === correctAnswer.toLowerCase()) {
-            feedbackElement.textContent = "Resposta Correta!"; // Mensagem de resposta correta
-            currentPhase++; // Avança para a próxima fase
-            if (currentPhase > 15) { // Atualizado para 13 fases
-                clearInterval(timer); // Para o timer se todos os enigmas foram resolvidos
-                document.getElementById("finalMessage").style.display = "block"; // Mostra a mensagem final
-            } else {
-                showPhase(currentPhase); // Mostra o próximo enigma
-            }
+        function showPhase(phase) {
+            document.querySelectorAll(".enigma-container").forEach(container => {
+                container.style.display = "none"; // Esconde todos os enigmas
+            });
+            document.getElementById(`enigma${phase}`).style.display = "block"; // Mostra o enigma da fase atual
             updatePhaseIndicators(); // Atualiza os indicadores de fase
-        } else {
-            feedbackElement.textContent = "Resposta Incorreta! Tente novamente."; // Mensagem de resposta incorreta
         }
-    }
-           <!-- Mensagem de Finalização -->
-    <p id="finalMessage" class="final-message"></p>
-    <!-- Tela de Parabéns -->
-<div id="parabens" class="parabens-container">
-    <h1>Parabéns! Você escapou!</h1>
-    <div id="confetti"></div>
-</div>
 
-<style>
-    /* Estilos para a tela de parabéns */
-    .parabens-container {
-        display: none; /* Oculto até que seja ativado */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.8);
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        z-index: 10;
-    }
-
-    .parabens-container h1 {
-        font-size: 48px;
-        margin-bottom: 20px;
-    }
-
-    /* Efeito de confetes */
-    .confetti-piece {
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background-color: rgba(255, 0, 0, 0.8);
-        animation: fall 3s linear infinite;
-    }
-
-    @keyframes fall {
-        from {
-            transform: translateY(-100px) rotate(0deg);
-            opacity: 1;
+        function navigateToPhase(phase) {
+            if (phase <= currentPhase) {
+                showPhase(phase); // Mostra a fase selecionada
+            }
         }
-        to {
-            transform: translateY(800px) rotate(360deg);
-            opacity: 0;
-        }
-    }
-</style>
 
-</script>
+        function updatePhaseIndicators() {
+            const indicators = document.querySelectorAll(".phase-indicator");
+            indicators.forEach((indicator, index) => {
+                indicator.classList.remove("active"); // Remove a classe ativa de todos
+                if (index < currentPhase) {
+                    indicator.classList.add("active"); // Adiciona a classe ativa para fases completadas
+                }
+            });
+        }
+
+        function checkAnswer(inputId, correctAnswer, phase) {
+            const answer = document.getElementById(inputId).value.trim().toLowerCase();
+            const resultElement = document.getElementById(`feedback${phase}`);
+
+            if (answer === correctAnswer.toLowerCase()) {
+                resultElement.textContent = "Correto! Você liberou a próxima pista.";
+                currentPhase++;
+                if (currentPhase <= 15) {
+                    document.getElementById(`enigma${currentPhase}`).style.display = "block"; // Mostra o próximo enigma
+                } else {
+                    finalizarEscapeRoom(); // Se todas as fases foram completadas
+                }
+            } else {
+                resultElement.textContent = "Incorreto. Tente novamente.";
+            }
+        }
+
+        // Função para exibir a tela de parabéns e iniciar a animação de confetes
+        function finalizarEscapeRoom() {
+            clearInterval(timer); // Para o timer
+            document.getElementById("finalMessage").style.display = "block"; // Exibe a mensagem final
+        }
+    </script>
+</body>
+</html>
 
