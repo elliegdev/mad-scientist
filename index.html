@@ -114,7 +114,8 @@
         <div class="phase-indicator" onclick="navigateToPhase(4)"></div>
         <div class="phase-indicator" onclick="navigateToPhase(5)"></div>
         <div class="phase-indicator" onclick="navigateToPhase(6)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(7)"></div><!-- Indicador para Enigma 7 -->
+        <div class="phase-indicator" onclick="navigateToPhase(7)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(8)"></div><!-- Indicador para Enigma 7 -->
     </div>
 
     <!-- Estrutura de Enigmas de 1 a 5 -->
@@ -167,10 +168,16 @@
         <p id="feedback5" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
         <button class="enigma-button" onclick="checkAnswer('answer6', 'acesa', 5)">Verificar Resposta</button>
     </div>
+    
+    <div id="enigma7" class="enigma-container">
+        <p><strong>Enigma 7:</strong> Decifre o anagrama "trapa avorne".</p>
+        <input type="text" id="answer7" placeholder="Digite sua resposta" />
+        <p id="feedback3" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
+        <button onclick="checkAnswer('answer7', 'aproventar', 3)">Verificar Resposta</button>
   
-    <!-- Enigma 7: Cofre com Sensor de Movimento -->
-    <section id="enigma6" class="enigma-container">
-        <h2>Enigma 6: Cofre com Sensor de Movimento</h2>
+    <!-- Enigma 8: Cofre com Sensor de Movimento -->
+    <section id="enigma8" class="enigma-container">
+        <h2>Enigma 8: Cofre com Sensor de Movimento</h2>
         <p>Encontre a postura correta para abrir o cofre e liberar a pista.</p>
         <button onclick="simularPostura()">Verificar Postura</button>
         <p id="resultadoEnigma6" class="resultado"></p>
@@ -217,7 +224,7 @@
         }
 
         function showPhase(phase) {
-            for (let i = 1; i <= 6; i++) {
+            for (let i = 1; i <= 8; i++) {
                 document.getElementById(`enigma${i}`).style.display = i === phase ? 'block' : 'none';
             }
             updateIndicators(phase);
@@ -239,7 +246,7 @@
                 feedbackElement.style.color = '#00ff00'; // Verde para resposta correta
                 feedbackElement.innerText = "Parabéns! Resposta correta!";
                 currentPhase++; // Avança para a próxima fase
-                if (currentPhase > 6) {
+                if (currentPhase > 8) {
                     clearInterval(timer); // Para o timer
                     document.getElementById('finalMessage').innerText = "Parabéns! Você escapou antes do tempo acabar!";
                     document.getElementById('finalMessage').style.display = "block"; // Mostrar mensagem de parabenização
