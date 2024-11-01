@@ -234,8 +234,8 @@
     <p id="feedback14" style="color: #ff0000;"></p>
     <button onclick="checkAnswer('answer14', 'dados', 14)">Verificar Resposta</button>
 </div>
-    
- <!-- Enigma 15: Cofre com Sensor de Movimento -->
+
+<!-- Enigma 15: Cofre com Sensor de Movimento -->
 <section id="enigma15" class="enigma-container">
     <h2>Enigma 15: Cofre com Sensor de Movimento</h2>
     <p>Encontre a postura correta para abrir o cofre e liberar a porta.</p>
@@ -243,6 +243,8 @@
     <button onclick="checkAnswer('answer15', 'certo', 15)">Verificar Resposta</button>
     <p id="feedback15" class="resultado"></p> <!-- Corrigido para o ID correto -->
 </section>
+
+<div id="finalMessage" style="display: none;"></div> <!-- Mensagem final -->
 
 <script>
     let currentPhase = 1; // Inicializa a fase atual
@@ -280,13 +282,6 @@
         updatePhaseIndicators(); // Atualiza os indicadores de fase
     }
 
-    function navigateToPhase(phase) {
-        // Permite navegar apenas para a fase atual ou anterior
-        if (phase < currentPhase) {
-            showPhase(phase); // Mostra a fase selecionada
-        }
-    }
-
     function updatePhaseIndicators() {
         const indicators = document.querySelectorAll(".phase-indicator");
         indicators.forEach((indicator, index) => {
@@ -303,6 +298,8 @@
 
         if (answer === correctAnswer.toLowerCase()) {
             resultElement.textContent = "Correto! Você liberou a próxima pista.";
+
+            // Avança para a próxima fase ou finaliza o jogo
             if (phase === 15) { // Verifica se é a última fase
                 finalizarEscapeRoom(); // Finaliza o jogo se a fase 15 for concluída
             } else {
