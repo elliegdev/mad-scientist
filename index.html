@@ -116,7 +116,13 @@
         <div class="phase-indicator" onclick="navigateToPhase(6)"></div>
         <div class="phase-indicator" onclick="navigateToPhase(7)"></div>
         <div class="phase-indicator" onclick="navigateToPhase(8)"></div>
-        <div class="phase-indicator" onclick="navigateToPhase(9)"></div><!-- Indicador para Enigma 7 -->
+        <div class="phase-indicator" onclick="navigateToPhase(9)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(10)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(11)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(12)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(13)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(14)"></div>
+        <div class="phase-indicator" onclick="navigateToPhase(15)"></div><!-- Indicador para Enigma 7 -->
     </div>
 
     <!-- Estrutura de Enigmas de 1 a 5 -->
@@ -166,33 +172,77 @@
     <div id="enigma6" class="enigma-container">
         <p><strong>Enigma 5:</strong> O que pode brilhar, iluminar e precisa de combustível ou fósforos para começar??</p>
         <input type="text" id="answer6" placeholder="Digite sua resposta" />
-        <p id="feedback5" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
+        <p id="feedback6" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
         <button class="enigma-button" onclick="checkAnswer('answer6', 'acesa', 6)">Verificar Resposta</button>
     </div>
+    
     
       <!-- Enigma 7 -->
     <div id="enigma7" class="enigma-container">
         <p><strong>Enigma 7:</strong> Decifre o anagrama "trapa avorne".</p>
         <input type="text" id="answer7" placeholder="Digite sua resposta" />
-        <p id="feedback3" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
+        <p id="feedback7" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
         <button onclick="checkAnswer('answer7', 'aproventar', 7)">Verificar Resposta</button>
     </div> 
     
       <!-- Enigma 8 -->
      <div id="enigma8" class="enigma-container">
         <p><strong>Enigma 8:</strong> Decifre a mensagem em código binário: 01001111 00100000 01001101 01001111 01001101 01000101 01001110 01010100 01001111.</p>
-        <input type="text" id="answer4" placeholder="Digite sua resposta" />
-        <p id="feedback4" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
+        <input type="text" id="answer8" placeholder="Digite sua resposta" />
+        <p id="feedback8" style="color: #ff0000;"></p> <!-- Feedback de resposta -->
         <button onclick="checkAnswer('answer8', 'o momento', 8)">Verificar Resposta</button>
     </div>
+    
+   <div id="enigma9" class="enigma-container">
+    <p><strong>Enigma 9:</strong> Descubra a palavra secreta usando as dicas. Cada letra representa uma posição inicial, e o número indica quantos passos avançar no alfabeto. Exemplo: "C3 L2 A1 R4".</p>
+    <input type="text" id="answer9" placeholder="Digite sua resposta" />
+    <p id="feedback9" style="color: #ff0000;"></p>
+    <button onclick="checkAnswer('answer9', 'foco', 9)">Verificar Resposta</button>
+  </div>
+    
+    <div id="enigma10" class="enigma-container">
+        <p><strong>Enigma 10:</strong> encontre a mensagem oculta que Dra. Vórtex deixou para trás e escape do laboratório!</p>
+        <input type="text" id="answer10" placeholder="Digite sua resposta" />
+        <p id="feedback10" style="color: #ff0000;"></p>
+        <button onclick="checkAnswer('answer10', 'experimento final', 10)">Verificar Resposta</button>
+  </div>
+    
+    <div id="enigma11" class="enigma-container">
+    <p><strong>Enigma 11:</strong> A palavra "epacse" parece confusa? Leia-a ao contrário para encontrar a resposta!</p>
+    <input type="text" id="answer11" placeholder="Digite sua resposta" />
+    <p id="feedback11" style="color: #ff0000;"></p>
+    <button onclick="checkAnswer('answer11', 'escape', 11)">Verificar Resposta</button>
+</div>
+    
+    <div id="enigma12" class="enigma-container">
+    <p><strong>Enigma 12:</strong> Cada número representa uma posição no alfabeto. Substitua-os pelas letras correspondentes para descobrir a palavra: "20-18-9-3-11".</p>
+    <input type="text" id="answer12" placeholder="Digite sua resposta" />
+    <p id="feedback12" style="color: #ff0000;"></p>
+    <button onclick="checkAnswer('answer12', 'trick', 12)">Verificar Resposta</button>
+</div>
+    
+    <div id="enigma13" class="enigma-container">
+    <p><strong>Enigma 13:</strong> Decifre o anagrama para encontrar uma palavra que faz sentido no contexto do jogo: "afesra".</p>
+    <input type="text" id="answer13" placeholder="Digite sua resposta" />
+    <p id="feedback13" style="color: #ff0000;"></p>
+    <button onclick="checkAnswer('answer13', 'safra', 13)">Verificar Resposta</button>
+</div>
+    
+    <div id="enigma14" class="enigma-container">
+    <p><strong>Enigma 14:</strong> Decifre a mensagem usando uma Cifra de César com deslocamento de 2 para trás: "fcfqv".</p>
+    <input type="text" id="answer13" placeholder="Digite sua resposta" />
+    <p id="feedback14" style="color: #ff0000;"></p>
+    <button onclick="checkAnswer('answer14', 'dados', 14)">Verificar Resposta</button>
+</div>
+    
         
 
-    <!-- Enigma 9: Cofre com Sensor de Movimento -->
-    <section id="enigma9" class="enigma-container">
-        <h2>Enigma 8: Cofre com Sensor de Movimento</h2>
+    <!-- Enigma 12: Cofre com Sensor de Movimento -->
+    <section id="enigma15" class="enigma-container">
+        <h2>Enigma 15: Cofre com Sensor de Movimento</h2>
         <p>Encontre a postura correta para abrir o cofre e liberar a pista.</p>
         <button onclick="simularPostura()">Verificar Postura</button>
-        <p id="resultadoEnigma6" class="resultado"></p>
+        <p id="resultadoEnigma15" class="resultado"></p>
     </section>
 
 
@@ -202,77 +252,75 @@
     <footer>
         <p>&copy; 2024 Escape Room Cientista Vórtex. Todos os direitos reservados.</p>
     </footer>
+<script>
+    let currentPhase = 1; // Inicializa a fase atual
+    let timer; // Timer para o jogo
+    let totalTime = 60 * 60; // 1 hora em segundos
 
-   <script>
-        let currentPhase = 1; // Inicializa a fase atual
-        let timer; // Timer para o jogo
-        let totalTime = 60 * 60; // 1 hora em segundos
+    function startGame() {
+        document.getElementById("startButton").style.display = "none"; // Esconde o botão de início
+        document.getElementById("timer").style.display = "block"; // Mostra o timer
+        startTimer(); // Inicia o timer
+        showPhase(currentPhase); // Mostra a fase inicial
+        document.querySelector(".phase-indicators").style.display = "flex"; // Exibe os indicadores de fase
+    }
 
-        function startGame() {
-            document.getElementById("startButton").style.display = "none"; // Esconde o botão de início
-            document.getElementById("timer").style.display = "block"; // Mostra o timer
-            startTimer(); // Inicia o timer
-            showPhase(currentPhase); // Mostra a fase inicial
-            document.querySelector(".phase-indicators").style.display = "flex"; // Exibe os indicadores de fase
-        }
-
-        function startTimer() {
-            const timerElement = document.getElementById("timer");
-            timer = setInterval(() => {
-                if (totalTime <= 0) {
-                    clearInterval(timer);
-                    alert("Tempo esgotado! Você não conseguiu escapar.");
-                    return;
-                }
-                totalTime--;
-                const minutes = Math.floor(totalTime / 60);
-                const seconds = totalTime % 60;
-                timerElement.textContent = `Tempo Restante: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-            }, 1000);
-        }
-
-        function showPhase(phase) {
-            document.querySelectorAll(".enigma-container").forEach(container => {
-                container.style.display = "none"; // Esconde todos os enigmas
-            });
-            document.getElementById(`enigma${phase}`).style.display = "block"; // Mostra o enigma da fase atual
-            updatePhaseIndicators(); // Atualiza os indicadores de fase
-        }
-
-        function navigateToPhase(phase) {
-            if (phase <= currentPhase) {
-                showPhase(phase); // Mostra a fase selecionada
+    function startTimer() {
+        const timerElement = document.getElementById("timer");
+        timer = setInterval(() => {
+            if (totalTime <= 0) {
+                clearInterval(timer);
+                alert("Tempo esgotado! Você não conseguiu escapar.");
+                return;
             }
+            totalTime--;
+            const minutes = Math.floor(totalTime / 60);
+            const seconds = totalTime % 60;
+            timerElement.textContent = `Tempo Restante: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }, 1000);
+    }
+
+    function showPhase(phase) {
+        document.querySelectorAll(".enigma-container").forEach(container => {
+            container.style.display = "none"; // Esconde todos os enigmas
+        });
+        document.getElementById(`enigma${phase}`).style.display = "block"; // Mostra o enigma da fase atual
+        updatePhaseIndicators(); // Atualiza os indicadores de fase
+    }
+
+    function navigateToPhase(phase) {
+        if (phase <= currentPhase) {
+            showPhase(phase); // Mostra a fase selecionada
         }
+    }
 
-        function updatePhaseIndicators() {
-            const indicators = document.querySelectorAll(".phase-indicator");
-            indicators.forEach((indicator, index) => {
-                indicator.classList.remove("active"); // Remove a classe ativa de todos
-                if (index < currentPhase) {
-                    indicator.classList.add("active"); // Adiciona a classe ativa para fases completadas
-                }
-            });
-        }
+    function updatePhaseIndicators() {
+        const indicators = document.querySelectorAll(".phase-indicator");
+        indicators.forEach((indicator, index) => {
+            indicator.classList.remove("active"); // Remove a classe ativa de todos
+            if (index < currentPhase) {
+                indicator.classList.add("active"); // Adiciona a classe ativa para fases completadas
+            }
+        });
+    }
 
-        function checkAnswer(answerId, correctAnswer, phase) {
-            const userAnswer = document.getElementById(answerId).value.trim().toLowerCase(); // Obtém a resposta do usuário
-            const feedbackElement = document.getElementById(`feedback${phase}`);
+    function checkAnswer(answerId, correctAnswer, phase) {
+        const userAnswer = document.getElementById(answerId).value.trim().toLowerCase(); // Obtém a resposta do usuário
+        const feedbackElement = document.getElementById(`feedback${phase}`);
 
-            if (userAnswer === correctAnswer.toLowerCase()) {
-                feedbackElement.textContent = "Resposta Correta!"; // Mensagem de resposta correta
-                currentPhase++; // Avança para a próxima fase
-                if (currentPhase > 9) {
-                    clearInterval(timer); // Para o timer se todos os enigmas foram resolvidos
-                    document.getElementById("finalMessage").style.display = "block"; // Mostra a mensagem final
-                } else {
-                    showPhase(currentPhase); // Mostra o próximo enigma
-                }
-                updatePhaseIndicators(); // Atualiza os indicadores de fase
+        if (userAnswer === correctAnswer.toLowerCase()) {
+            feedbackElement.textContent = "Resposta Correta!"; // Mensagem de resposta correta
+            currentPhase++; // Avança para a próxima fase
+            if (currentPhase > 15) { // Atualizado para 13 fases
+                clearInterval(timer); // Para o timer se todos os enigmas foram resolvidos
+                document.getElementById("finalMessage").style.display = "block"; // Mostra a mensagem final
             } else {
-                feedbackElement.textContent = "Resposta Incorreta! Tente novamente."; // Mensagem de resposta incorreta
+                showPhase(currentPhase); // Mostra o próximo enigma
             }
+            updatePhaseIndicators(); // Atualiza os indicadores de fase
+        } else {
+            feedbackElement.textContent = "Resposta Incorreta! Tente novamente."; // Mensagem de resposta incorreta
         }
-    </script>
-</body>
-</html>
+    }
+</script>
+
